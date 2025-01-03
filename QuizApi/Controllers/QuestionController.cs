@@ -19,7 +19,7 @@ public class QuestionController
     public async Task<IResult> GetQuestionSetById(int id)
     {
         QuestionSet questionSet = await this._quizService.GetQuestionSet(id);
-        return questionSet == null ? Results.NotFound() : Results.Ok(questionSet);
+        return questionSet == null ? Results.NotFound("Invalid question set id") : Results.Ok(questionSet);
     }
     
     [HttpGet]
@@ -35,7 +35,7 @@ public class QuestionController
     public async Task<IResult> GetQuestionById(int id)
     {
         Question question = await this._quizService.GetQuestionById(id);
-        return question == null ? Results.NotFound() : Results.Ok(question);
+        return question == null ? Results.NotFound("Invalid question id") : Results.Ok(question);
     }
     
     [HttpGet]

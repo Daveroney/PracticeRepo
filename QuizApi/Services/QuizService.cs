@@ -16,20 +16,23 @@ public class QuizService : IQuizService
 
     public async Task<List<Question>> GetAllQuestions()
     {
-        var questions = JsonSerializer.Deserialize<List<Question>>(questionData);
+        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
+        var questions = questionSets.SelectMany(x => x.Questions).ToList();
         return questions;
     }
 
     public async Task<Question> GetQuestionById(int id)
     {
-        var questions = JsonSerializer.Deserialize<List<Question>>(questionData);
+        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
+        var questions = questionSets.SelectMany(x => x.Questions).ToList();
         var selectedQuestion = questions.Where(x => x.Id == id).FirstOrDefault();
         return selectedQuestion;
     }
 
     public async Task<Question> GetRandomQuestion()
     {
-        var questions = JsonSerializer.Deserialize<List<Question>>(questionData);
+        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
+        var questions = questionSets.SelectMany(x => x.Questions).ToList();
         var randomQuestion = questions[new Random().Next(0, questions.Count)];
         return randomQuestion;
     }
