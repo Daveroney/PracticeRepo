@@ -15,7 +15,7 @@ public class QuestionController
     }
 
     [HttpGet]
-    [Route("questionSet/{id}")]
+    [Route("questionSets/{id}")]
     public async Task<IResult> GetQuestionSetById(int id)
     {
         QuestionSet questionSet = await this._quizService.GetQuestionSet(id);
@@ -23,15 +23,15 @@ public class QuestionController
     }
     
     [HttpGet]
-    [Route("questions")]
-    public async Task<IResult> GetAllQuestions()
+    [Route("questionSets/{id}/questions")]
+    public async Task<IResult> GetAllQuestionsByQuestionSetId(int id)
     {
-        List<Question> questions = await this._quizService.GetAllQuestions();
+        List<Question> questions = await this._quizService.GetAllQuestionsByQuestionSetId(id);
         return questions == null ? Results.NotFound() : Results.Ok(questions);
     }
     
     [HttpGet]
-    [Route("question/{id}")]
+    [Route("questions/{id}")]
     public async Task<IResult> GetQuestionById(int id)
     {
         Question question = await this._quizService.GetQuestionById(id);
@@ -39,10 +39,10 @@ public class QuestionController
     }
     
     [HttpGet]
-    [Route("randomQuestion")]
-    public async Task<IResult> GetRandomQuestion()
+    [Route("questionSets/{id}/randomQuestions")]
+    public async Task<IResult> GetRandomQuestion(int id)
     {
-        Question question = await this._quizService.GetRandomQuestion();
+        Question question = await this._quizService.GetRandomQuestionByQuestionSetId(id);
         return question == null ? Results.NotFound() : Results.Ok(question);
     }
 }
