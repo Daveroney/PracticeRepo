@@ -23,11 +23,11 @@ public class QuestionController
     }
     
     [HttpGet]
-    [Route("questionSets/{id}/questions")]
-    public async Task<IResult> GetAllQuestionsByQuestionSetId(int id)
+    [Route("questionSets")]
+    public async Task<IResult> GetAllQuestionSets()
     {
-        List<Question> questions = await this._quizService.GetAllQuestionsByQuestionSetId(id);
-        return questions == null ? Results.NotFound() : Results.Ok(questions);
+        List<QuestionSetVM> questionSets = await this._quizService.GetAllQuestionSets();
+        return questionSets == null ? Results.NotFound() : Results.Ok(questionSets);
     }
     
     [HttpGet]

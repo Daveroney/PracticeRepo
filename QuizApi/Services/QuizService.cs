@@ -5,37 +5,59 @@ namespace QuizApi.Services;
 
 public class QuizService : IQuizService
 {
-    private string questionData = File.ReadAllText("Data/questionSets.json");
+    private readonly List<QuestionSet> _questionSets;
+    public QuizService()
+    {
+        try
+        {
+            string questionData = File.ReadAllText("Data/questionSets.json");
+            _questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Error reading question sets", e);
+        }
+    }
     
     public async Task<QuestionSet> GetQuestionSet(int setId)
     {
-        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
-        var selectedQuestionSet = questionSets.Where(x => x.Id == setId).FirstOrDefault();
+        var selectedQuestionSet = _questionSets.Where(x => x.Id == setId).FirstOrDefault();
         return selectedQuestionSet;
     }
 
-    public async Task<List<Question>> GetAllQuestionsByQuestionSetId(int setId)
+    public async Task<List<QuestionSetVM>> GetAllQuestionSets()
     {
-        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
-        var selectedQuestionSet = questionSets.Where(x => x.Id == setId).FirstOrDefault();
-        var questions = selectedQuestionSet.Questions.Select(x => x).ToList();
-        return questions;
+            var questionSetsInfo = new List<QuestionSetVM>();
+            foreach (var questionSet in _questionSets)
+            {
+                var newQuestionSet = new QuestionSetVM();
+                newQuestionSet.Id = questionSet.Id;
+                newQuestionSet.Name = questionSet.Name;
+                newQuestionSet.Description = questionSet.Description;
+                questionSetsInfo.Add(newQuestionSet);
+            }
+            return questionSetsInfo;
     }
 
     public async Task<Question> GetQuestionById(int questionId)
     {
-        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
-        var questions = questionSets.SelectMany(x => x.Questions).ToList();
+        var questions = _questionSets.SelectMany(x => x.Questions).ToList();
         var selectedQuestion = questions.Where(x => x.Id == questionId).FirstOrDefault();
         return selectedQuestion;
     }
 
     public async Task<Question> GetRandomQuestionByQuestionSetId(int setId)
     {
-        var questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
-        var selectedQuestionSet = questionSets.Where(x => x.Id == setId).FirstOrDefault();
-        var questions = selectedQuestionSet.Questions.Select(x => x).ToList();
-        var randomQuestion = questions[new Random().Next(0, questions.Count)];
-        return randomQuestion;
+        try
+        {
+            var selectedQuestionSet = _questionSets.Where(x => x.Id == setId).FirstOrDefault();
+            var questions = selectedQuestionSet.Questions.Select(x => x).ToList();
+            var randomQuestion = questions[new Random().Next(0, questions.Count)];
+            return randomQuestion;
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Error fetching question set", e);
+        }
     }
 }
