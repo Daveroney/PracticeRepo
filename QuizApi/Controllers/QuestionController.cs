@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using QuizApi.Exceptions;
 using QuizApi.Models;
 using QuizApi.Services;
 
@@ -18,8 +19,20 @@ public class QuestionController
     [Route("questionSets/{id}")]
     public async Task<IResult> GetQuestionSetById(int id)
     {
-        QuestionSet questionSet = await this._quizService.GetQuestionSet(id);
-        return questionSet == null ? Results.NotFound("Invalid question set id") : Results.Ok(questionSet);
+        try
+        {
+            QuestionSet questionSet = await this._quizService.GetQuestionSet(id);
+            return Results.Ok(questionSet);
+        }
+        catch (QuestionSetNotFoundException e)
+        {
+            return Results.NotFound(e.Message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return Results.StatusCode(500);
+        }
     }
     
     [HttpGet]
@@ -44,5 +57,13 @@ public class QuestionController
     {
         Question question = await this._quizService.GetRandomQuestionByQuestionSetId(id);
         return question == null ? Results.NotFound() : Results.Ok(question);
+    }
+
+    [HttpPost]
+    [Route("questionSets")]
+    public async Task<IResult> CreateQuestionSet(String name, String description)
+    {
+        QuestionSet newQuestionSet = await this._quizService.CreateQuestionSet(name, description);
+        return newQuestionSet == null ? Results.NotFound() : Results.Ok(newQuestionSet);
     }
 }

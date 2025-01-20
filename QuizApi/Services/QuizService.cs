@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using QuizApi.Exceptions;
 using QuizApi.Models;
 
 namespace QuizApi.Services;
@@ -21,7 +22,12 @@ public class QuizService : IQuizService
     
     public async Task<QuestionSet> GetQuestionSet(int setId)
     {
+        throw new NotImplementedException("Not implemented");
         var selectedQuestionSet = _questionSets.Where(x => x.Id == setId).FirstOrDefault();
+        if (selectedQuestionSet == null)
+        {
+            throw new QuestionSetNotFoundException(setId);
+        }
         return selectedQuestionSet;
     }
 
@@ -60,4 +66,21 @@ public class QuizService : IQuizService
             throw new Exception("Error fetching question set", e);
         }
     }
+    public async Task<QuestionSet> CreateQuestionSet(String name, String description)
+    {
+        var newQuestionSet = new QuestionSet();
+        newQuestionSet.Id = GenerateNewQuestionSetId();
+        newQuestionSet.Name = name;
+        newQuestionSet.Description = description;
+        _questionSets.Add(newQuestionSet);
+        return newQuestionSet;
+    }
+    
+    private int GenerateNewQuestionSetId()
+    {
+        int currentHighestId = _questionSets.Max(x => x.Id);
+        int newId = currentHighestId + 1;
+        return newId;
+    }
+    
 }

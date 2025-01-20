@@ -8,4 +8,5 @@ public interface IQuizService
     public Task<List<QuestionSetVM>> GetAllQuestionSets();
     public Task<Question> GetQuestionById(int questionId);
     public Task<Question> GetRandomQuestionByQuestionSetId(int setId);
+    public Task<QuestionSet> CreateQuestionSet(String name, String description);
 }
