@@ -1,6 +1,6 @@
 ﻿namespace QuizApi.Models;
 
-public class QuestionSetVM
+public class QuestionSetDTO
 {
     public int Id { get; set; }
     public string Name { get; set; }

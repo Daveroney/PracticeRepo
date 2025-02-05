@@ -1,3 +1,5 @@
+using AutoMapper;
+using QuizApi.Models;
 using QuizApi.Services;
 
 namespace QuizApi;
@@ -15,6 +17,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddScoped<IQuizService, QuizService>();
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
 
         var app = builder.Build();
 

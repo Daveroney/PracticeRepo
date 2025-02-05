@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using AutoMapper;
 using QuizApi.Exceptions;
 using QuizApi.Models;
 
@@ -7,8 +8,10 @@ namespace QuizApi.Services;
 public class QuizService : IQuizService
 {
     private readonly List<QuestionSet> _questionSets;
-    public QuizService()
+    private readonly IMapper _mapper;
+    public QuizService(IMapper mapper)
     {
+        _mapper = mapper;
         try
         {
             string questionData = File.ReadAllText("Data/questionSets.json");
@@ -22,7 +25,6 @@ public class QuizService : IQuizService
     
     public async Task<QuestionSet> GetQuestionSet(int setId)
     {
-        throw new NotImplementedException("Not implemented");
         var selectedQuestionSet = _questionSets.Where(x => x.Id == setId).FirstOrDefault();
         if (selectedQuestionSet == null)
         {
@@ -31,16 +33,14 @@ public class QuizService : IQuizService
         return selectedQuestionSet;
     }
 
-    public async Task<List<QuestionSetVM>> GetAllQuestionSets()
+    public async Task<List<QuestionSetDTO>> GetAllQuestionSets()
     {
-            var questionSetsInfo = new List<QuestionSetVM>();
+            var questionSetsInfo = new List<QuestionSetDTO>();
             foreach (var questionSet in _questionSets)
             {
-                var newQuestionSet = new QuestionSetVM();
-                newQuestionSet.Id = questionSet.Id;
-                newQuestionSet.Name = questionSet.Name;
-                newQuestionSet.Description = questionSet.Description;
-                questionSetsInfo.Add(newQuestionSet);
+                QuestionSetDTO questionSetDto = _mapper.Map<QuestionSetDTO>(questionSet);
+                
+                questionSetsInfo.Add(questionSetDto);
             }
             return questionSetsInfo;
     }
@@ -72,7 +72,16 @@ public class QuizService : IQuizService
         newQuestionSet.Id = GenerateNewQuestionSetId();
         newQuestionSet.Name = name;
         newQuestionSet.Description = description;
+        newQuestionSet.Questions = new List<Question>();
         _questionSets.Add(newQuestionSet);
+        string path = @"Data/questionSets.json";
+        if (!File.Exists(path))
+        {
+            string newJson = JsonSerializer.Serialize(_questionSets);
+            File.WriteAllText(path, newJson);
+        }
+        string appendJson = JsonSerializer.Serialize(newQuestionSet);
+        File.AppendAllText(path, appendJson);
         return newQuestionSet;
     }
     

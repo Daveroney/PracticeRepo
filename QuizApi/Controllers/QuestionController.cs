@@ -39,7 +39,7 @@ public class QuestionController
     [Route("questionSets")]
     public async Task<IResult> GetAllQuestionSets()
     {
-        List<QuestionSetVM> questionSets = await this._quizService.GetAllQuestionSets();
+        List<QuestionSetDTO> questionSets = await this._quizService.GetAllQuestionSets();
         return questionSets == null ? Results.NotFound() : Results.Ok(questionSets);
     }
     
