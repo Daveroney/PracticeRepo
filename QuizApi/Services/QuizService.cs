@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Nodes;
 using AutoMapper;
 using QuizApi.Exceptions;
 using QuizApi.Models;
@@ -12,15 +13,10 @@ public class QuizService : IQuizService
     public QuizService(IMapper mapper)
     {
         _mapper = mapper;
-        try
-        {
+
             string questionData = File.ReadAllText("Data/questionSets.json");
             _questionSets = JsonSerializer.Deserialize<List<QuestionSet>>(questionData);
-        }
-        catch (Exception e)
-        {
-            throw new Exception("Error reading question sets", e);
-        }
+
     }
     
     public async Task<QuestionSet> GetQuestionSet(int setId)
@@ -80,11 +76,24 @@ public class QuizService : IQuizService
             string newJson = JsonSerializer.Serialize(_questionSets);
             File.WriteAllText(path, newJson);
         }
-        string appendJson = JsonSerializer.Serialize(newQuestionSet);
-        File.AppendAllText(path, appendJson);
+        string serializedQuestionSets = JsonSerializer.Serialize(_questionSets);
+        File.WriteAllText(path, serializedQuestionSets);
         return newQuestionSet;
     }
-    
+
+    public async Task<Question> CreateQuestion(Question question)
+    {
+        var newQuestion = new Question();
+        newQuestion.Id = GenerateNewQuestionSetId();
+        newQuestion.QuestionText = question.QuestionText;
+        newQuestion.PossibleAnswers = question.PossibleAnswers;
+        newQuestion.CorrectAnswersIndex = question.CorrectAnswersIndex;
+        newQuestion.Explanation = question.Explanation;
+        newQuestion.Tip = question.Tip;
+        newQuestion.Tags = question.Tags;
+        newQuestion.Difficulty = question.Difficulty;
+        
+    }
     private int GenerateNewQuestionSetId()
     {
         int currentHighestId = _questionSets.Max(x => x.Id);
