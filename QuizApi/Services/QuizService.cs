@@ -68,26 +68,102 @@ public class QuizService : IQuizService
     }
     public async Task<QuestionSet> CreateQuestionSet(String name, String description)
     {
-        var newQuestionSet = new QuestionSet();
+        QuestionSet newQuestionSet = new QuestionSet();
         newQuestionSet.Id = GenerateNewQuestionSetId();
         newQuestionSet.Name = name;
         newQuestionSet.Description = description;
         newQuestionSet.Questions = new List<Question>();
-        _questionSets.Add(newQuestionSet);
         string path = @"Data/questionSets.json";
         if (!File.Exists(path))
         {
             string newJson = JsonSerializer.Serialize(_questionSets);
             File.WriteAllText(path, newJson);
         }
-        string appendJson = JsonSerializer.Serialize(newQuestionSet);
-        File.AppendAllText(path, appendJson);
+        using FileStream openStream = File.OpenRead(path);
+        var questionSetList = await JsonSerializer.DeserializeAsync<List<QuestionSet>>(openStream);
+        questionSetList.Add(newQuestionSet);
+        openStream.Close();
+        await File.WriteAllTextAsync(path, JsonSerializer.Serialize(questionSetList));
         return newQuestionSet;
+    }
+
+    public async Task<Question> CreateQuestion(int questionSetId, String questionText,
+        String[] possibleAnswers, int[] correctAnswersIndex, string explanation,
+        string tip, List<string> tags, string difficulty)
+    {
+        Question newQuestion = new Question();
+        newQuestion.Id = GenerateNewQuestionId();
+        newQuestion.QuestionText = questionText;
+        newQuestion.PossibleAnswers = possibleAnswers.ToList();
+        newQuestion.CorrectAnswersIndex = correctAnswersIndex.ToList();
+        newQuestion.Explanation = explanation;
+        newQuestion.Tip = tip;
+        newQuestion.Tags = tags;
+        newQuestion.Difficulty = difficulty;
+        
+        /*
+        QuestionSet selectedQuestionSet = _questionSets.Where(x => x.Id == questionSetId).FirstOrDefault();
+        */
+        string path = @"Data/questionSets.json";
+        if (!File.Exists(path))
+        {
+            string newJson = JsonSerializer.Serialize(_questionSets);
+            File.WriteAllText(path, newJson);
+        }
+
+        List<QuestionSet> questionSetList;
+        using (FileStream openStream = File.OpenRead(path))
+        {
+            questionSetList = await JsonSerializer.DeserializeAsync<List<QuestionSet>>(openStream);
+        }
+        QuestionSet selectedQuestionSet = questionSetList.Where(x => x.Id == questionSetId).FirstOrDefault();
+        selectedQuestionSet.Questions.Add(newQuestion);
+        await File.WriteAllTextAsync(path, JsonSerializer.Serialize(questionSetList));
+        return newQuestion;
+    }
+
+    public async Task DeleteQuestionSet(int id)
+    {
+        QuestionSet questionSetToDelete = _questionSets.Where(x => x.Id == id).FirstOrDefault();
+        if (questionSetToDelete == null)
+        {
+            throw new QuestionSetNotFoundException(id);
+        }
+        string path = @"Data/questionSets.json";
+        List<QuestionSet> questionSetList = new List<QuestionSet>();
+        using (FileStream openStream = File.OpenRead(path))
+        { 
+            questionSetList = await JsonSerializer.DeserializeAsync<List<QuestionSet>>(openStream);
+        }
+        questionSetList.RemoveAll(x => x.Id == id);
+        await File.WriteAllTextAsync(path, JsonSerializer.Serialize(questionSetList));
+    }
+
+    public async Task<QuestionSet> UpdateQuestionSet(int id, String newName, String newDescription)
+    {
+        string path = @"Data/questionSets.json";
+        List<QuestionSet> questionSetList;
+        using (FileStream openStream = File.OpenRead(path))
+        {
+            questionSetList = await JsonSerializer.DeserializeAsync<List<QuestionSet>>(openStream);
+        }
+        QuestionSet questionSetToUpdate = questionSetList.Where(x => x.Id == id).FirstOrDefault();
+        questionSetToUpdate.Name = newName;
+        questionSetToUpdate.Description = newDescription;
+        await File.WriteAllTextAsync(path, JsonSerializer.Serialize(questionSetList));
+        return questionSetToUpdate;
     }
     
     private int GenerateNewQuestionSetId()
     {
         int currentHighestId = _questionSets.Max(x => x.Id);
+        int newId = currentHighestId + 1;
+        return newId;
+    }
+    
+    private int GenerateNewQuestionId()
+    {
+        int currentHighestId = _questionSets.SelectMany(x => x.Questions).Max(x => x.Id);
         int newId = currentHighestId + 1;
         return newId;
     }

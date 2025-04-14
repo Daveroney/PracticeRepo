@@ -17,7 +17,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddScoped<IQuizService, QuizService>();
-        builder.Services.AddAutoMapper(typeof(MappingProfile));
+        builder.Services.AddAutoMapper(typeof(QuestionMappingProfile));
 
         var app = builder.Build();
 

@@ -6,7 +6,7 @@ using QuizApi.Services;
 
 namespace QuizApi.Controllers;
 
-public class QuestionController
+public class QuestionController : ControllerBase
 {
     private readonly IQuizService _quizService;
 
@@ -65,5 +65,60 @@ public class QuestionController
     {
         QuestionSet newQuestionSet = await this._quizService.CreateQuestionSet(name, description);
         return newQuestionSet == null ? Results.NotFound() : Results.Ok(newQuestionSet);
+    }
+    
+    [HttpPost]
+    [Route("questionSets/{id}/questions")]
+    public async Task<IResult> CreateQuestion(int id, String questionText,
+        String[] possibleAnswers, int[] correctAnswersIndex, string explanation,
+        string tip, List<string> tags, string difficulty)
+    {
+        try
+        {
+            Question newQuestion = await this._quizService.CreateQuestion(id, questionText,
+                possibleAnswers, correctAnswersIndex, explanation,
+                tip, tags, difficulty);
+            return Results.Ok(newQuestion);
+        }
+        catch (QuestionSetNotFoundException e)
+        {
+            return Results.NotFound(e.Message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return Results.StatusCode(500);
+        }
+    }
+
+    [HttpDelete]
+    [Route("questionSets/{id}")]
+
+    public async Task<IActionResult> DeleteQuestionSet(int id)
+    {
+        await this._quizService.DeleteQuestionSet(id);
+        return NoContent();
+    }
+
+    [HttpPut]
+    [Route("questionSets/{id}")]
+
+    public async Task<IResult> UpdateQuestionSet(int id, String newName, String newDescription)
+    {
+        try
+        {
+            QuestionSet questionSet = await this._quizService.UpdateQuestionSet(id, newName, newDescription);
+            return Results.Ok(questionSet);
+        }
+        catch (QuestionSetNotFoundException e)
+        {
+            return Results.NotFound(e.Message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return Results.StatusCode(500);
+        }
+        
     }
 }

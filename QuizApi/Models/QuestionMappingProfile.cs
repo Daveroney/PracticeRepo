@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 namespace QuizApi.Models;
 
-public class MappingProfile : Profile
+public class QuestionMappingProfile : Profile
 {
-    public MappingProfile()
+    public QuestionMappingProfile()
     {
         CreateMap<QuestionSet, QuestionSetDTO>();
     }
