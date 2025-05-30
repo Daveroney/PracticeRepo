@@ -17,17 +17,6 @@ jobs:
     runOnce:
       deploy:
         steps:
-
-        - script: |
-            echo "Dotnet version:" 
-            dotnet --version
-            echo "Node version:" 
-            node --version
-            echo "Npm version:" 
-            npm --version
-            echo "Docker version:" 
-            docker --version
-          displayName: 'Verify Tools Installed'
         - task: UseDotNet@2
           inputs:
             packageType: 'sdk'
