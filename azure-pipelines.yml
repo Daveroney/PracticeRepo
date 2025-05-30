@@ -19,30 +19,35 @@ jobs:
         steps:
         - script: echo my first deployment
         
-- job: setupTools
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
-  - task: UseDotNet@2
-    inputs:
-      packageType: 'sdk'
-      version: '8.x'
-      installationPath: $(Agent.ToolsDirectory)/dotnet
-  
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '20.x'
-      checkLatest: true
+- deployment: setupTools
+  displayName: Setup Tools on VM
+  environment:
+    name: agent-pool
+    resourceType: VirtualMachine
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - task: UseDotNet@2
+          inputs:
+            packageType: 'sdk'
+            version: '8.x'
+            installationPath: $(Agent.ToolsDirectory)/dotnet
+        
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '20.x'
+            checkLatest: true
 
-  - script: |
-      sudo apt-get update
-      sudo apt-get install -y docker.io
-    displayName: 'Install Docker CLI'
+        - script: |
+            sudo apt-get update
+            sudo apt-get install -y docker.io
+          displayName: 'Install Docker CLI'
 
-  - script: |
-      dotnet --version
-      node --version
-      npm --version
-      docker --version
-    displayName: 'Verify Tools Installed'
+        - script: |
+            dotnet --version
+            node --version
+            npm --version
+            docker --version
+          displayName: 'Verify Tools Installed'
 
