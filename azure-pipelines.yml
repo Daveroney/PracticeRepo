@@ -34,9 +34,13 @@ jobs:
           displayName: 'Install Docker CLI'
 
         - script: |
+            echo "Dotnet version:"
             dotnet --version
+            echo "Node version:"
             node --version
+            echo "Npm version:"
             npm --version
+            echo "Docker version:"
             docker --version
           displayName: 'Verify Tools Installed'
 
