@@ -7,17 +7,6 @@ trigger:
 - main
 
 jobs:
-
-- deployment: VMDeploy
-  displayName: Web deploy
-  environment:
-    name: agent-pool
-    resourceType: VirtualMachine
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-        - script: echo my first deployment
         
 - deployment: setupTools
   displayName: Setup Tools on VM
@@ -28,6 +17,13 @@ jobs:
     runOnce:
       deploy:
         steps:
+
+        - script: |
+            dotnet --version
+            node --version
+            npm --version
+            docker --version
+          displayName: 'Verify Tools Installed'
         - task: UseDotNet@2
           inputs:
             packageType: 'sdk'
