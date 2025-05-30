@@ -7,6 +7,18 @@ trigger:
 - main
 
 jobs:
+
+- deployment: VMDeploy
+  displayName: Web deploy
+  environment:
+    name: agent-pool
+    resourceType: VirtualMachine
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - script: echo my first deployment
+        
 - job: setupTools
   pool:
     vmImage: 'ubuntu-latest'
@@ -34,13 +46,3 @@ jobs:
       docker --version
     displayName: 'Verify Tools Installed'
 
-- deployment: VMDeploy
-  displayName: Web deploy
-  environment:
-    name: agent-pool
-    resourceType: VirtualMachine
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-        - script: echo my first deployment
