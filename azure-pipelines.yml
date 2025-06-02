@@ -7,44 +7,42 @@ trigger:
 - main
 
 pool:
-  name: 'New Agent Pool'
+  name: 'AgentDeadPool'
 
-jobs:
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '8.x'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
         
-- deployment: setupTools
-  displayName: Setup Tools on VM
-  environment:
-    name: agent-pool
-    resourceType: VirtualMachine
-  strategy:
-    runOnce:
-      deploy:
-        steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+      checkLatest: true
 
-        - task: UseDotNet@2
-          inputs:
-            packageType: 'sdk'
-            version: '8.x'
-            installationPath: $(Agent.ToolsDirectory)/dotnet
-        
-        - task: NodeTool@0
-          inputs:
-            versionSpec: '20.x'
-            checkLatest: true
+  - script: |
+      sudo apt-get update
+      sudo apt-get install -y docker.io
+    displayName: 'Install Docker CLI'
 
-        - script: |
-            sudo apt-get update
-            sudo apt-get install -y docker.io
-          displayName: 'Install Docker CLI'
+  - script: |
+      echo "Dotnet version:"
+      dotnet --version
+      echo "Node version:"
+      node --version
+      echo "Npm version:"
+      npm --version
+      echo "Docker version:"
+      docker --version
+    displayName: 'Verify Tools Installed'
 
-        - script: |
-            echo "Dotnet version:"
-            dotnet --version
-            echo "Node version:"
-            node --version
-            echo "Npm version:"
-            npm --version
-            echo "Docker version:"
-            docker --version
-          displayName: 'Verify Tools Installed'
+  - script: dotnet restore
+    displayName: 'Restore NuGet packages'
+
+  - script: dotnet build --configuration Release --no-restore
+    displayName: 'Build .NET app'
+
+  - script: dotnet test --no-build --verbosity normal
+    displayName: 'Run Tests'
 
