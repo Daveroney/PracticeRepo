@@ -10,21 +10,21 @@ pool:
   name: 'AgentDeadPool'
 
 steps:
-  - task: UseDotNet@2
-    inputs:
-      packageType: 'sdk'
-      version: '8.x'
-      installationPath: $(Agent.ToolsDirectory)/dotnet
+  # - task: UseDotNet@2
+  #   inputs:
+  #     packageType: 'sdk'
+  #     version: '8.x'
+  #     installationPath: $(Agent.ToolsDirectory)/dotnet
         
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '20.x'
-      checkLatest: true
+  # - task: NodeTool@0
+  #   inputs:
+  #     versionSpec: '20.x'
+  #     checkLatest: true
 
-  - script: |
-      apt-get update
-      apt-get install -y docker.io
-    displayName: 'Install Docker CLI'
+  # - script: |
+  #     apt-get update
+  #     apt-get install -y docker.io
+  #   displayName: 'Install Docker CLI'
 
   - script: |
       echo "Dotnet version:"
