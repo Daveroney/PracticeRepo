@@ -1,4 +1,7 @@
-﻿namespace QuizApi.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using QuizApi.NameMappings;
+
+namespace QuizApi.Models;
 
 public class Question
 {
@@ -9,5 +12,6 @@ public class Question
     public string Explanation { get; set; }
     public string Tip { get; set; }
     public List<string> Tags { get; set; }
-    public string Difficulty { get; set; }
+    [EnumDataType(typeof(Difficulty), ErrorMessage = "Invalid difficulty")]
+    public Difficulty Difficulty { get; set; }
 }

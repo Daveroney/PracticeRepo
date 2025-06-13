@@ -1,4 +1,3 @@
-using AutoMapper;
 using QuizApi.Models;
 using QuizApi.Services;
 

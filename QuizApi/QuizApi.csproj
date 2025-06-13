@@ -7,17 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="AutoMapper" Version="13.0.1"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Data\" />
+        <Folder Include="Data\"/>
+        <Folder Include="Helpers\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="WeatherForecast.cs" />
-      <Compile Remove="Controllers\WeatherForecastController.cs" />
+        <Compile Remove="WeatherForecast.cs"/>
+        <Compile Remove="Controllers\WeatherForecastController.cs"/>
     </ItemGroup>
 
 </Project>

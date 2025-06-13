@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuizApi.Exceptions;
 using QuizApi.Models;
 using QuizApi.Services;
@@ -12,7 +11,7 @@ public class QuestionController : ControllerBase
 
     public QuestionController(IQuizService quizService)
     {
-        this._quizService = quizService;
+        _quizService = quizService;
     }
 
     [HttpGet]
@@ -21,7 +20,7 @@ public class QuestionController : ControllerBase
     {
         try
         {
-            QuestionSet questionSet = await this._quizService.GetQuestionSet(id);
+            var questionSet = await _quizService.GetQuestionSet(id);
             return Results.Ok(questionSet);
         }
         catch (QuestionSetNotFoundException e)
@@ -34,50 +33,46 @@ public class QuestionController : ControllerBase
             return Results.StatusCode(500);
         }
     }
-    
+
     [HttpGet]
     [Route("questionSets")]
     public async Task<IResult> GetAllQuestionSets()
     {
-        List<QuestionSetDTO> questionSets = await this._quizService.GetAllQuestionSets();
+        var questionSets = await _quizService.GetAllQuestionSets();
         return questionSets == null ? Results.NotFound() : Results.Ok(questionSets);
     }
-    
+
     [HttpGet]
     [Route("questions/{id}")]
     public async Task<IResult> GetQuestionById(int id)
     {
-        Question question = await this._quizService.GetQuestionById(id);
+        var question = await _quizService.GetQuestionById(id);
         return question == null ? Results.NotFound("Invalid question id") : Results.Ok(question);
     }
-    
+
     [HttpGet]
     [Route("questionSets/{id}/randomQuestions")]
     public async Task<IResult> GetRandomQuestion(int id)
     {
-        Question question = await this._quizService.GetRandomQuestionByQuestionSetId(id);
+        var question = await _quizService.GetRandomQuestionByQuestionSetId(id);
         return question == null ? Results.NotFound() : Results.Ok(question);
     }
 
     [HttpPost]
     [Route("questionSets")]
-    public async Task<IResult> CreateQuestionSet(String name, String description)
+    public async Task<IResult> CreateQuestionSet(QuestionSetDTO questionSetDto)
     {
-        QuestionSet newQuestionSet = await this._quizService.CreateQuestionSet(name, description);
+        var newQuestionSet = await _quizService.CreateQuestionSet(questionSetDto);
         return newQuestionSet == null ? Results.NotFound() : Results.Ok(newQuestionSet);
     }
-    
+
     [HttpPost]
     [Route("questionSets/{id}/questions")]
-    public async Task<IResult> CreateQuestion(int id, String questionText,
-        String[] possibleAnswers, int[] correctAnswersIndex, string explanation,
-        string tip, List<string> tags, string difficulty)
+    public async Task<IResult> CreateQuestion(int id, QuestionDTO questionDto)
     {
         try
         {
-            Question newQuestion = await this._quizService.CreateQuestion(id, questionText,
-                possibleAnswers, correctAnswersIndex, explanation,
-                tip, tags, difficulty);
+            var newQuestion = await _quizService.CreateQuestion(id, questionDto);
             return Results.Ok(newQuestion);
         }
         catch (QuestionSetNotFoundException e)
@@ -93,21 +88,19 @@ public class QuestionController : ControllerBase
 
     [HttpDelete]
     [Route("questionSets/{id}")]
-
     public async Task<IActionResult> DeleteQuestionSet(int id)
     {
-        await this._quizService.DeleteQuestionSet(id);
+        await _quizService.DeleteQuestionSet(id);
         return NoContent();
     }
 
     [HttpPut]
     [Route("questionSets/{id}")]
-
-    public async Task<IResult> UpdateQuestionSet(int id, String newName, String newDescription)
+    public async Task<IResult> UpdateQuestionSet(int id, string newName, string newDescription)
     {
         try
         {
-            QuestionSet questionSet = await this._quizService.UpdateQuestionSet(id, newName, newDescription);
+            var questionSet = await _quizService.UpdateQuestionSet(id, newName, newDescription);
             return Results.Ok(questionSet);
         }
         catch (QuestionSetNotFoundException e)
@@ -119,6 +112,5 @@ public class QuestionController : ControllerBase
             Console.WriteLine(e);
             return Results.StatusCode(500);
         }
-        
     }
 }
