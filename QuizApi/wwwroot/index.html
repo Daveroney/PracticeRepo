@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karteikarten-App</title>
+    <link rel="stylesheet" href="./styles/mainStyles.css" />
+    <link rel="stylesheet" href="./styles/sidebarStyles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/b8e882cba7.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <span>David Hock</span> <span>novaCapta</span>
+      <span>Projektwoche</span>
+    </header>
+    <div class="page-container">
+      <nav class="sidebar">
+        <ul id="sidebar-list" class="sidebar-nav">
+          <li><a id="Frontpage" href="#Frontpage">Home</a></li>
+          <li>
+            <a id="ExampleCards" href="#ExampleCards">Beispiel-Karteikarten</a>
+          </li>
+        </ul>
+        <ul id="new-cards-sidebar"></ul>
+      </nav>
+      <main id="sheet-root">
+        <!-- HTML Sheet content goes here per JS -->
+      </main>
+    </div>
+    <footer>Fancy footer line</footer>
+    <button id="toggle-close-button">
+      <i class="fa-solid fa-caret-down fa-rotate-90"></i>
+    </button>
+    <button id="toggle-open-button">
+      <i class="fa-solid fa-caret-down fa-rotate-270"></i>
+    </button>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>

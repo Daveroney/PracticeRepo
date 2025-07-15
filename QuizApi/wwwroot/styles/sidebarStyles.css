@@ -1,0 +1,44 @@
+.sidebar,
+#form-sidebar {
+  background-color: rgb(202, 202, 202);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 210px;
+  transition: 0.5s;
+}
+
+#sidebar-list,
+#form-sidebar {
+  list-style: none;
+  padding: 0;
+  position: sticky;
+  top: 0;
+}
+
+#sidebar-list > li a,
+#form-sidebar > li a {
+  color: black;
+  display: block;
+  font-family: "Poiret One", cursive;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 2vh 1vh;
+  text-decoration: none;
+}
+
+#sidebar-list > li a:hover:not(.active),
+#form-sidebar > li a:hover:not(.active) {
+  background-color: #707070;
+  color: white;
+}
+
+#sidebar-list > li a.active,
+#form-sidebar > li a.active {
+  background-color: #ebebeb;
+}
+
+#sidebar-list > li a:visited {
+  color: #1f2028;
+  text-decoration: none;
+}

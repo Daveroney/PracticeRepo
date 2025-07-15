@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\icons\\change-management.png",
+      "PackagePath": "staticwebassets\\icons\\change-management.png"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\icons\\index-cards.png",
+      "PackagePath": "staticwebassets\\icons\\index-cards.png"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\icons\\paper.png",
+      "PackagePath": "staticwebassets\\icons\\paper.png"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\CreateCard.html",
+      "PackagePath": "staticwebassets\\pages\\CreateCard.html"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\ExampleCards.html",
+      "PackagePath": "staticwebassets\\pages\\ExampleCards.html"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\Frontpage.html",
+      "PackagePath": "staticwebassets\\pages\\Frontpage.html"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\ManageCards.html",
+      "PackagePath": "staticwebassets\\pages\\ManageCards.html"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\indexCards.js",
+      "PackagePath": "staticwebassets\\scripts\\indexCards.js"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\script.js",
+      "PackagePath": "staticwebassets\\scripts\\script.js"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\styles\\mainStyles.css",
+      "PackagePath": "staticwebassets\\styles\\mainStyles.css"
+    },
+    {
+      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\styles\\sidebarStyles.css",
+      "PackagePath": "staticwebassets\\styles\\sidebarStyles.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.QuizApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.QuizApi.props",
+      "PackagePath": "build\\QuizApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.QuizApi.props",
+      "PackagePath": "buildMultiTargeting\\QuizApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.QuizApi.props",
+      "PackagePath": "buildTransitive\\QuizApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

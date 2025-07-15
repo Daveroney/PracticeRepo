@@ -68,3 +68,4 @@ D:\Programming\QuizApi\QuizApi\obj\Debug\net8.0\refint\QuizApi.dll
 D:\Programming\QuizApi\QuizApi\obj\Debug\net8.0\QuizApi.pdb
 D:\Programming\QuizApi\QuizApi\obj\Debug\net8.0\QuizApi.genruntimeconfig.cache
 D:\Programming\QuizApi\QuizApi\obj\Debug\net8.0\ref\QuizApi.dll
+C:\Programming\QuizApi\QuizApi\bin\Debug\net8.0\QuizApi.staticwebassets.runtime.json
