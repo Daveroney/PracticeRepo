@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  name: 'AgentDeadPool'
+  name: 'DaveronisVmssPool'
 
 steps:
   # - task: UseDotNet@2
