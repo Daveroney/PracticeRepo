@@ -5,6 +5,8 @@ using QuizApi.Services;
 
 namespace QuizApi.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class QuestionController : ControllerBase
 {
     private readonly IQuizService _quizService;

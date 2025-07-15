@@ -12,6 +12,8 @@ function setupHTMLContent(htmlContent, newPage) {
   history.pushState({ page: newPage }, null, `#${newPage}`);
   if (newPage === "Frontpage") {
     setupFrontPage();
+  } else if (newPage === "ExampleCards") {
+    setupIndexCards();
   }
   return htmlContent;
 }
@@ -89,12 +91,12 @@ function setActiveSidebarLink(currentPage) {
   const navbarLinks = document
     .getElementById("sidebar-list")
     .getElementsByTagName("a");
-  // check if current page is the same as anchor id; if so, set active class. Remove active class initially
+  // Check if current page is the same as anchor id; if so, set active class. Remove active class initially
   for (let index = 0; index < navbarLinks.length; index++) {
     const linkToBeActive = navbarLinks[index];
     linkToBeActive.classList.remove("active");
     if (linkToBeActive.id === currentPage) {
-      linkToBeActive.setAttribute("class", "active"); // add class not setAttribute
+      linkToBeActive.setAttribute("class", "active");
     }
   }
 }
@@ -151,6 +153,44 @@ function onErrorWhileLoadingHtml(error, pageWhereErrorOccurred) {
 //#endregion
 
 //#region index card functions
+
+function setupIndexCards() {
+  const nextButton = document.getElementById("index-card-next-button");
+  nextButton.addEventListener("click", insertIndexCardData);
+
+  function fetchIndexCardData(apiEndpoint) {
+    return fetch(`/api/question/${apiEndpoint}`).then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "Error fetching index card data: " + response.statusText
+        );
+      }
+      return response.json();
+    });
+  }
+
+  async function insertIndexCardData() {
+    try {
+      const indexCardData = await fetchIndexCardData("questionSets");
+      const indexCardToInsert = document.getElementById("index-card-wrapper");
+      if (indexCardData && indexCardData.length > 0) {
+        const firstIndexCard = indexCardData[0];
+        const answersHtml = firstIndexCard.PossibleAnswers.map(
+          (answer) => `<p>Possible Answer: ${answer}</p>`
+        ).join("");
+        indexCardToInsert.innerHTML = `
+        <h2>${firstIndexCard.QuestionText}</h2>
+        ${answersHtml}
+      `;
+      } else {
+        indexCardToInsert.innerHTML = "<p>No index card data available.</p>";
+      }
+    } catch (error) {
+      console.error("Error inserting index card data:", error);
+    }
+  }
+}
+//#endregion
 
 setupNavigationBar();
 loadCurrentContentHtmlInitially();
