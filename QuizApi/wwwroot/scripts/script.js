@@ -21,6 +21,12 @@ function setupHTMLContent(htmlContent, newPage) {
 function setPageTitle(pageTitle) {
   document.title = pageTitle;
 }
+
+function removeText() {
+  const currentPageContent = document.getElementById("sheet-root");
+  currentPageContent.innerHTML = "";
+}
+
 //#endregion
 
 //#region sidebar functions
@@ -31,14 +37,13 @@ function setupNavigationBar() {
       updateContent(event);
     });
   });
-  // SIDEBAR TOGGLE BUTTONS
+
   const toggleButtonOpen = document.getElementById("toggle-close-button");
   const toggleButtonClose = document.getElementById("toggle-open-button");
   const sidebar = document.querySelector(".sidebar");
   toggleButtonClose.style.display = "none";
 
   function closeNavigation() {
-    // sidebar is open, close it
     sidebar.style.display = "none";
     toggleButtonOpen.style.display = "none";
     toggleButtonClose.style.display = "block";
@@ -46,18 +51,20 @@ function setupNavigationBar() {
   toggleButtonOpen.addEventListener("click", closeNavigation);
 
   function openNavigation() {
-    // sidebar is closed, open it
     sidebar.style.display = "flex";
     toggleButtonOpen.style.display = "block";
     toggleButtonClose.style.display = "none";
   }
   toggleButtonClose.addEventListener("click", openNavigation);
 }
+
 function loadCurrentContentHtmlInitially() {
   const currentPage = window.location.hash.substring(1);
   fetchHtmlSheetContent(currentPage);
   setActiveSidebarLink(currentPage);
+  createCategoriesForObjectsStored();
 }
+
 function updateContent(event) {
   event.preventDefault();
   // Find the nearest ancestor anchor element to avoid errors when clicking on elements within an anchor
@@ -68,6 +75,7 @@ function updateContent(event) {
     setActiveSidebarLink(newPage);
   }
 }
+
 function setupFrontPage() {
   const frontPageLinks = document.querySelectorAll(".element-links a");
   frontPageLinks.forEach((link) => {
@@ -83,6 +91,7 @@ function setupFrontPage() {
     });
   });
 }
+
 /**
  * Set the class of the corresponding sidebar element to active.
  * @param {string} currentPage - The path to the html document to be set to active
@@ -127,6 +136,43 @@ function fetchHtmlSheetContent(newPage) {
       onErrorWhileLoadingHtml(error, newPage);
     });
 }
+
+/**
+ * Create a new sidebar element for a question set and add it to the sidebar.
+ * @param {object} questionSet - The question set object containing id and name.
+ */
+function createNewSidebarCategory(questionSet) {
+  const sidebarList = document.getElementById("sidebar-list");
+  const newCategory = document.createElement("li");
+  const newAnchor = document.createElement("a");
+  newAnchor.innerHTML = questionSet.name;
+  newAnchor.id = questionSet.id;
+  newAnchor.style.cursor = "pointer";
+  sidebarList.appendChild(newCategory);
+  newCategory.appendChild(newAnchor);
+  newAnchor.addEventListener("click", function () {
+    setPageTitle(questionSet.name);
+    removeText();
+    createNewPage(questionSet);
+    setActiveSidebarLink(questionSet.id);
+  });
+}
+
+async function createCategoriesForObjectsStored() {
+  const categories = await fetchIndexCardData("questionSets");
+  updateSidebar(categories);
+}
+
+function updateSidebar(indexCardQuestionSets) {
+  const staticPartOfNavbar = document.getElementById("sidebar-list");
+  const homeSidebar = document.getElementById("category-sidebar");
+  homeSidebar.innerHTML = "";
+  for (const category of indexCardQuestionSets) {
+    createNewSidebarCategory(category);
+  }
+  staticPartOfNavbar.appendChild(homeSidebar);
+}
+
 //#endregion
 
 //#region error handling
@@ -152,44 +198,114 @@ function onErrorWhileLoadingHtml(error, pageWhereErrorOccurred) {
 }
 //#endregion
 
+function fetchIndexCardData(apiEndpoint) {
+  return fetch(`/api/question/${apiEndpoint}`).then((response) => {
+    if (!response.ok) {
+      throw new Error("Error fetching index card data: " + response.statusText);
+    }
+    return response.json();
+  });
+}
 //#region index card functions
 
 function setupIndexCards() {
-  const nextButton = document.getElementById("index-card-next-button");
-  nextButton.addEventListener("click", insertIndexCardData);
+  // const nextButton = document.getElementById("index-card-next-button");
+  // nextButton.addEventListener("click", insertIndexCardData);
 
-  function fetchIndexCardData(apiEndpoint) {
-    return fetch(`/api/question/${apiEndpoint}`).then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          "Error fetching index card data: " + response.statusText
-        );
-      }
-      return response.json();
+  async function renderCategories() {
+    const questionSetsData = await fetchIndexCardData("questionSets");
+    const categoryButtonArea = document.querySelector(".index-card-categories");
+    categoryButtonArea.innerHTML = "";
+    questionSetsData.forEach((questionSet) => {
+      const button = document.createElement("button");
+      button.textContent = questionSet.name;
+      button.id = `question-set-${questionSet.id}`;
+      button.addEventListener("click", () => {
+        console.log(`Question set clicked: ${questionSet.name}`);
+      });
+      categoryButtonArea.appendChild(button);
     });
   }
+  renderCategories();
+}
 
-  async function insertIndexCardData() {
-    try {
-      const indexCardData = await fetchIndexCardData("questionSets");
-      const indexCardToInsert = document.getElementById("index-card-wrapper");
-      if (indexCardData && indexCardData.length > 0) {
-        const firstIndexCard = indexCardData[0];
-        const answersHtml = firstIndexCard.PossibleAnswers.map(
-          (answer) => `<p>Possible Answer: ${answer}</p>`
-        ).join("");
-        indexCardToInsert.innerHTML = `
+async function insertIndexCardData() {
+  try {
+    const indexCardData = await fetchIndexCardData("questionSets");
+    const indexCardToInsert = document.getElementById("index-card-wrapper");
+    if (indexCardData && indexCardData.length > 0) {
+      const firstIndexCard = indexCardData[0];
+      const answersHtml = firstIndexCard.PossibleAnswers.map(
+        (answer) => `<p>Possible Answer: ${answer}</p>`
+      ).join("");
+      indexCardToInsert.innerHTML = `
         <h2>${firstIndexCard.QuestionText}</h2>
         ${answersHtml}
       `;
-      } else {
-        indexCardToInsert.innerHTML = "<p>No index card data available.</p>";
-      }
-    } catch (error) {
-      console.error("Error inserting index card data:", error);
+    } else {
+      indexCardToInsert.innerHTML = "<p>No index card data available.</p>";
     }
+  } catch (error) {
+    console.error("Error inserting index card data:", error);
   }
 }
+
+/**
+ * Mocks a HTML page for a question set and sets up the necessary elements.
+ * @param {object} questionSet - The question set object containing id and name.
+ */
+function createNewPage(questionSet) {
+  const currentPageContent = document.getElementById("sheet-root");
+  const header = document.createElement("h1");
+  header.textContent = questionSet.name;
+  const indexCardWrapper = document.createElement("div");
+  indexCardWrapper.setAttribute("class", "index-card-wrapper");
+  indexCardWrapper.setAttribute("id", `question-set-${questionSet.id}`);
+  currentPageContent.appendChild(indexCardWrapper);
+  const indexCardBorder = document.createElement("div");
+  indexCardBorder.setAttribute("class", "index-card-border");
+  const indexCard = document.createElement("div");
+  indexCard.setAttribute("class", "index-card");
+  const indexCardHeader = document.createElement("div");
+  indexCardHeader.setAttribute("class", "index-card-header");
+  const indexCardTitle = document.createElement("h2");
+  indexCardTitle.setAttribute("id", "index-card-title");
+  const indexCardAnswers = document.createElement("div");
+  indexCardAnswers.setAttribute("class", "index-card-answers");
+  const nextButton = document.createElement("button");
+  nextButton.setAttribute("id", "next-question-button");
+  nextButton.textContent = "Nächste Karte";
+  nextButton.addEventListener("click", () => {
+    renderRandomQuestion(questionSet.id);
+  });
+  currentPageContent.appendChild(header);
+  currentPageContent.appendChild(indexCardWrapper);
+  indexCardWrapper.appendChild(indexCardBorder);
+  indexCardBorder.appendChild(indexCard);
+  indexCard.appendChild(indexCardHeader);
+  indexCardHeader.appendChild(indexCardTitle);
+  indexCard.appendChild(indexCardAnswers);
+  currentPageContent.appendChild(nextButton);
+}
+
+function renderRandomQuestion(questionSetId) {
+  fetchIndexCardData(`questionSets/${questionSetId}/randomQuestions`)
+    .then((data) => {
+      if (data) {
+        console.log(data);
+      } else {
+        console.log("No question available");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching random question:", error);
+    });
+}
+
+function loadCategoryQuestions(categoryId) {
+  const categories = fetchIndexCardData(`questionSets/${categoryId}`);
+}
+
 //#endregion
 
 setupNavigationBar();
