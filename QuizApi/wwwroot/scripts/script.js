@@ -272,12 +272,10 @@ function createNewPage(questionSet) {
   indexCardTitle.setAttribute("id", "index-card-title");
   const indexCardAnswers = document.createElement("div");
   indexCardAnswers.setAttribute("class", "index-card-answers");
+  const answerList = document.createElement("ul");
   const nextButton = document.createElement("button");
   nextButton.setAttribute("id", "next-question-button");
   nextButton.textContent = "Nächste Karte";
-  nextButton.addEventListener("click", () => {
-    renderRandomQuestion(questionSet.id);
-  });
   currentPageContent.appendChild(header);
   currentPageContent.appendChild(indexCardWrapper);
   indexCardWrapper.appendChild(indexCardBorder);
@@ -285,25 +283,35 @@ function createNewPage(questionSet) {
   indexCard.appendChild(indexCardHeader);
   indexCardHeader.appendChild(indexCardTitle);
   indexCard.appendChild(indexCardAnswers);
+  indexCardAnswers.appendChild(answerList);
   currentPageContent.appendChild(nextButton);
+  renderRandomQuestion(questionSet.id, indexCardTitle, answerList);
+  nextButton.addEventListener("click", () => {
+    renderRandomQuestion(questionSet.id, indexCardTitle, answerList);
+  });
 }
 
-function renderRandomQuestion(questionSetId) {
+/**
+ * Displays a random question from a specified question set.
+ * @param {number} questionSetId - The ID of the question set to fetch a random question from.
+ * @param {string} title - The HTML element where the question text will be displayed.
+ * @param {HTMLElement} answerContainer - The HTML element where the possible answers will be displayed.
+ */
+function renderRandomQuestion(questionSetId, title, answerContainer) {
   fetchIndexCardData(`questionSets/${questionSetId}/randomQuestions`)
     .then((data) => {
-      if (data) {
-        console.log(data);
-      } else {
-        console.log("No question available");
-      }
+      title.textContent = data.questionText;
+      answerContainer.innerHTML = "";
+      data.possibleAnswers.forEach((answer) => {
+        const answerItem = document.createElement("li");
+        answerItem.textContent = answer;
+        answerContainer.appendChild(answerItem);
+      });
     })
     .catch((error) => {
       console.error("Error fetching random question:", error);
+      title.textContent = "Keine Karten verfügbar.";
     });
-}
-
-function loadCategoryQuestions(categoryId) {
-  const categories = fetchIndexCardData(`questionSets/${categoryId}`);
 }
 
 //#endregion

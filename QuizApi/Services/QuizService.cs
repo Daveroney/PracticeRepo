@@ -66,9 +66,10 @@ public class QuizService : IQuizService
         }
     }
 
-    public async Task<QuestionSet> CreateQuestionSet(QuestionSetDTO questionSetDto)
+    public async Task<QuestionSet> CreateQuestionSet(CreateQuestionSetDTO createQuestionSetDto)
     {
-        var newQuestionSet = _mapper.Map<QuestionSet>(questionSetDto);
+        var newQuestionSet = _mapper.Map<QuestionSet>(createQuestionSetDto);
+        newQuestionSet.Id = GenerateNewQuestionSetId();
         newQuestionSet.Questions = new List<Question>();
         var path = @"Data/questionSets.json";
         if (!File.Exists(path))

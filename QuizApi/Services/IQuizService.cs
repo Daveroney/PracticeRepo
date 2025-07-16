@@ -8,7 +8,7 @@ public interface IQuizService
     public Task<List<QuestionSetDTO>> GetAllQuestionSets();
     public Task<Question> GetQuestionById(int questionId);
     public Task<Question> GetRandomQuestionByQuestionSetId(int setId);
-    public Task<QuestionSet> CreateQuestionSet(QuestionSetDTO questionSetDto);
+    public Task<QuestionSet> CreateQuestionSet(CreateQuestionSetDTO createQuestionSetDto);
 
     public Task<Question> CreateQuestion(int questionSetId, QuestionDTO questionDto);
     public Task DeleteQuestionSet(int id);
