@@ -16,19 +16,39 @@
       <div class="index-card">
         <label for="question-set-dropdown">Kategorie wählen:</label>
         <select name="questionSetDropdown" id="question-set-dropdown">
-          <option value="">-- Kategorie auswählen --</option>
+          <option value="">Kategorie auswählen</option>
         </select>
         <h3>Titel / Frage eingeben</h3>
-        <input type="text" placeholder="Frage eingeben" />
+        <input
+          id="index-card-question-text"
+          type="text"
+          placeholder="Frage eingeben"
+        />
+
+        <label for="question-difficulty">Schwierigkeit:</label>
+        <select id="question-difficulty" name="question-difficulty">
+          <option value="easy">Einfach</option>
+          <option value="medium">Mittel</option>
+          <option value="hard">Schwer</option>
+        </select>
 
         <div class="index-card-answers">
           <h3>Antwortmöglichkeiten</h3>
-          <input
-            type="text"
-            id="create-card-answer-input-1"
-            class="index-card-possible-answer"
-            placeholder="Antwort hinzufügen"
-          />
+
+          <div class="answer-item">
+            <input
+              type="text"
+              id="create-card-answer-input-1"
+              class="index-card-possible-answer"
+              placeholder="Antwort hinzufügen"
+            />
+            <input
+              type="checkbox"
+              class="answer-correct-checkbox"
+              title="Richtige Antwort"
+            />
+          </div>
+
           <button id="create-card-add-answer-button">Antwort hinzufügen</button>
         </div>
       </div>
@@ -48,6 +68,7 @@
           id="question-set-user-input"
           type="text"
           placeholder="Kategorie eingeben"
+          required
         />
 
         <div class="index-card-answers">

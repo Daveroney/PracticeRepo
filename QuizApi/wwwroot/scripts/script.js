@@ -99,7 +99,7 @@
     const navbarLinks = document
       .getElementById("sidebar-list")
       .getElementsByTagName("a");
-    // Check if current page is the same as anchor id; if so, set active class. Remove active class initially
+    // Check if current page is the same as anchor id; if so, set active class.
     for (let index = 0; index < navbarLinks.length; index++) {
       const linkToBeActive = navbarLinks[index];
       linkToBeActive.classList.remove("active");
@@ -299,19 +299,22 @@
     const indexCardCreateButton = document.getElementById(
       "index-card-create-button"
     );
-    const questionSetTitleInput = document.getElementById(
-      "question-set-user-input"
-    );
-    const descriptionInput = document.getElementById(
-      "question-set-description-user-input"
-    );
     creationDropdown.addEventListener("change", () =>
       toggleItemCreationVisibility(creationDropdown.value)
     );
+
     populateQuestionSets();
+
     questionSetCreateButton.addEventListener("click", function () {
-      createQuestionSet(questionSetTitleInput.value, descriptionInput.value);
+      const questionSetTitleInput = document.getElementById(
+        "question-set-user-input"
+      ).value;
+      const questionSetDescriptionInput = document.getElementById(
+        "question-set-description-user-input"
+      ).value;
+      createQuestionSet(questionSetTitleInput, questionSetDescriptionInput);
     });
+
     indexCardCreateButton.addEventListener("click", function () {
       const questionSetId = document.getElementById(
         "question-set-dropdown"
@@ -322,17 +325,40 @@
       const possibleAnswers = Array.from(
         document.querySelectorAll(".index-card-possible-answer")
       ).map((input) => input.value);
-      createIndexCard(questionSetId, questionText, possibleAnswers);
+      createIndexCard(
+        questionSetId,
+        questionText,
+        possibleAnswers,
+        [1],
+        "",
+        [""],
+        ""
+      );
     });
+
     createCardAnswerButton.addEventListener("click", function () {
+      const answerContainer = document.createElement("div");
+      answerContainer.classList.add("answer-item");
+
+      const checkbox = document.createElement("input");
+      checkbox.setAttribute("type", "checkbox");
+      checkbox.classList.add("answer-correct-checkbox");
+      checkbox.setAttribute("title", "Richtige Antwort");
+
       const answerInput = document.createElement("input");
       answerInput.setAttribute("type", "text");
       answerInput.setAttribute("class", "index-card-possible-answer");
       answerInput.setAttribute("placeholder", "Antwort hinzufügen");
 
-      const answersContainer = document.querySelector(".index-card-answers");
-      const button = document.getElementById("create-card-add-answer-button");
-      answersContainer.insertBefore(answerInput, button);
+      answerContainer.appendChild(answerInput);
+      answerContainer.appendChild(checkbox);
+
+      const answersWrapper = document.querySelector(".index-card-answers");
+      const addButton = document.getElementById(
+        "create-card-add-answer-button"
+      );
+
+      answersWrapper.insertBefore(answerContainer, addButton);
     });
   }
 
@@ -354,6 +380,9 @@
     }
   }
 
+  /**
+   * Fetches all question sets from the fetch API and renders a dropdown with the available data.
+   */
   async function populateQuestionSets() {
     const questionSets = await getAllQuestionSets();
     const questionSetDropdown = document.getElementById(
@@ -406,7 +435,15 @@
     return response.json();
   }
 
-  async function createIndexCard(questionSetId, questionText, possibleAnswers) {
+  async function createIndexCard(
+    questionSetId,
+    questionText,
+    possibleAnswers,
+    correctAnswersIndex,
+    tip,
+    tags,
+    explanation
+  ) {
     const response = await fetch(
       `/api/question/questionSets/${questionSetId}/questions`,
       {
@@ -417,6 +454,12 @@
         body: JSON.stringify({
           questionText: questionText,
           possibleAnswers: possibleAnswers,
+          correctAnswersIndex: Array.isArray(correctAnswersIndex)
+            ? correctAnswersIndex
+            : [correctAnswersIndex],
+          tip: tip,
+          tags: Array.isArray(tags) ? tags : [],
+          explanation: explanation,
         }),
       }
     );
