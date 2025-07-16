@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SEnvufcv6x80KCw64bbEtkrrcfTVKrfO79w3q6CRS5U=",
+  "Hash": "o0DiyOgivKgfKIn7YcItTiPL/JvUcJtvjYgQKsN9irI=",
   "Source": "QuizApi",
   "BasePath": "_content/QuizApi",
   "Mode": "Default",
@@ -167,25 +167,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\pages\\ManageCards.html"
-    },
-    {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\indexCards.js",
-      "SourceId": "QuizApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
-      "BasePath": "_content/QuizApi",
-      "RelativePath": "scripts/indexCards.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\scripts\\indexCards.js"
     },
     {
       "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\script.js",

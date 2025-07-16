@@ -1,1 +1,340 @@
-[{"Id":1,"Name":"C#, .NET und ASP.NET Lernset","Description":"Ein Lernset mit Fragen zu C#, .NET und dem ASP.NET Framework.","Questions":[{"Id":1,"QuestionText":"Was ist der Hauptzweck der Common Language Runtime (CLR) in .NET?","PossibleAnswers":["C#-Code in Maschinencode zu kompilieren","Speicherverwaltung und Sicherheitsdienste bereitzustellen","HTML in Webseiten zu \u00FCbersetzen","Datenbankverbindungen zu verwalten"],"CorrectAnswersIndex":[1],"Explanation":"Die CLR bietet Dienste wie Speicherverwaltung, Typensicherheit, Ausnahmebehandlung, Garbage Collection und Sicherheit.","Tip":"Denke an die Kerndienste, die die .NET-Laufzeit bereitstellt.","Tags":["C#",".NET","CLR","Laufzeit"],"Difficulty":"Easy"},{"Id":2,"QuestionText":"Welche der folgenden sind g\u00FCltige Zugriffsmodifizierer in C#?","PossibleAnswers":["public","protected","private","secure","internal"],"CorrectAnswersIndex":[0,1,2,4],"Explanation":"C# hat public, protected, private, internal und protected internal als Zugriffsmodifizierer. \u0027secure\u0027 ist kein g\u00FCltiger Zugriffsmodifizierer in C#.","Tip":"Erinnere dich an die Schl\u00FCsselw\u00F6rter, die die Zug\u00E4nglichkeit von Klassen und Klassenmitgliedern definieren.","Tags":["C#","Zugriffsmodifizierer","OOP"],"Difficulty":"Medium"},{"Id":3,"QuestionText":"Was ist ASP.NET Core?","PossibleAnswers":["Ein plattform\u00FCbergreifendes, leistungsstarkes Framework zum Erstellen moderner Webanwendungen","Eine veraltete Version von ASP.NET","Ein ausschlie\u00DFlich f\u00FCr Windows verf\u00FCgbares Webentwicklungsframework","Ein Datenbankverwaltungssystem"],"CorrectAnswersIndex":[0],"Explanation":"ASP.NET Core ist ein plattform\u00FCbergreifendes, quelloffenes Framework zum Erstellen moderner, cloudbasierter und internetverbundener Anwendungen.","Tip":"Denke an die j\u00FCngsten Entwicklungen in der ASP.NET-Technologie.","Tags":["ASP.NET","ASP.NET Core","Webentwicklung"],"Difficulty":"Easy"},{"Id":4,"QuestionText":"Welches Schl\u00FCsselwort wird in C# verwendet, um eine Methode zu definieren, die in einer abgeleiteten Klasse \u00FCberschrieben werden kann?","PossibleAnswers":["abstract","virtual","override","sealed"],"CorrectAnswersIndex":[1],"Explanation":"Das Schl\u00FCsselwort \u0027virtual\u0027 erm\u00F6glicht es, eine Methode in jeder abgeleiteten Klasse zu \u00FCberschreiben.","Tip":"Denke an Methoden\u00FCberschreibung in der Vererbung.","Tags":["C#","OOP","Vererbung"],"Difficulty":"Medium"},{"Id":5,"QuestionText":"Welche der folgenden sind Merkmale von .NET 6?","PossibleAnswers":["Vereinheitlichte Plattform f\u00FCr Browser-, Cloud-, Desktop- und Mobile-Apps","Unterst\u00FCtzung f\u00FCr C# 10","Veraltete Unterst\u00FCtzung f\u00FCr Windows Forms","Verbesserte Leistung und Hot Reload"],"CorrectAnswersIndex":[0,1,3],"Explanation":".NET 6 f\u00FChrte eine vereinheitlichte Plattform, Unterst\u00FCtzung f\u00FCr C# 10, verbesserte Leistung und Hot Reload-Funktionen ein. Die Unterst\u00FCtzung f\u00FCr Windows Forms wurde nicht eingestellt.","Tip":"Erinnere dich an die wichtigsten Aktualisierungen in den neuesten .NET-Versionen.","Tags":[".NET",".NET 6","C#","Features"],"Difficulty":"Medium"},{"Id":6,"QuestionText":"Welche Aussagen \u00FCber die Garbage Collection in .NET sind wahr?","PossibleAnswers":["Sie gibt automatisch Speicher frei, der von ungenutzten Objekten belegt wird","Entwickler m\u00FCssen die Garbage Collection manuell ausl\u00F6sen","Die Garbage Collection ist nicht-deterministisch","Sie hilft, Speicherlecks zu verhindern"],"CorrectAnswersIndex":[0,2,3],"Explanation":"Der Garbage Collector gibt automatisch den von nicht mehr verwendeten Objekten belegten Speicher frei. Er arbeitet nicht-deterministisch, und er hilft, Speicherlecks zu verhindern.","Tip":"\u00DCberlege, wie die Speicherverwaltung in .NET gehandhabt wird.","Tags":[".NET","Garbage Collection","Speicherverwaltung"],"Difficulty":"Medium"},{"Id":7,"QuestionText":"Welcher Bestandteil ist in ASP.NET MVC f\u00FCr die Verarbeitung von Benutzereingaben und die Interaktion mit dem Modell verantwortlich?","PossibleAnswers":["Model","View","Controller","Router"],"CorrectAnswersIndex":[2],"Explanation":"Im MVC-Muster verarbeitet der Controller Benutzereingaben und Interaktionen und aktualisiert bei Bedarf das Modell.","Tip":"Denke an die Komponenten des MVC-Designmusters.","Tags":["ASP.NET","MVC","Design Patterns"],"Difficulty":"Easy"},{"Id":8,"QuestionText":"Welche der folgenden LINQ-Abfrageoperatoren werden f\u00FCr Projektion verwendet?","PossibleAnswers":["Select","Where","GroupBy","OrderBy"],"CorrectAnswersIndex":[0],"Explanation":"\u0027Select\u0027 wird in LINQ-Abfragen f\u00FCr die Projektion verwendet. \u0027Where\u0027 dient zum Filtern, \u0027GroupBy\u0027 zum Gruppieren und \u0027OrderBy\u0027 zum Sortieren.","Tip":"Erinnere dich an den Zweck jedes LINQ-Abfrageoperators.","Tags":["C#","LINQ","Datenabfrage"],"Difficulty":"Medium"},{"Id":9,"QuestionText":"Was ist der Zweck der Schl\u00FCsselw\u00F6rter \u0027async\u0027 und \u0027await\u0027 in C#?","PossibleAnswers":["Um Ausnahmen zu behandeln","Um asynchrone Methoden zu definieren","Um Multithreading-Code einfacher zu schreiben","Um sicherzustellen, dass Code synchron ausgef\u00FChrt wird"],"CorrectAnswersIndex":[1,2],"Explanation":"\u0027async\u0027 und \u0027await\u0027 werden verwendet, um asynchrone Methoden zu definieren und es einfacher zu machen, Code zu schreiben, der asynchron ausgef\u00FChrt wird und Multithreading handhabt.","Tip":"Denke dar\u00FCber nach, wie C# asynchrone Operationen behandelt.","Tags":["C#","Asynchrones Programmieren","Multithreading"],"Difficulty":"Medium"},{"Id":10,"QuestionText":"Welche Datentypen sind Wertetypen in C#?","PossibleAnswers":["int","string","bool","object","struct"],"CorrectAnswersIndex":[0,2,4],"Explanation":"In C# sind Wertetypen primitive Typen wie int und bool sowie Strukturen. \u0027string\u0027 und \u0027object\u0027 sind Referenztypen.","Tip":"Erinnere dich an den Unterschied zwischen Wertetypen und Referenztypen in C#.","Tags":["C#","Datentypen","Wertetypen"],"Difficulty":"Medium"},{"Id":11,"QuestionText":"Was ist der Zweck des Global Assembly Cache (GAC) in .NET?","PossibleAnswers":["Um gemeinsam genutzte Assemblys zu speichern, die von mehreren Anwendungen verwendet werden k\u00F6nnen","Um Webseiten f\u00FCr schnelleres Laden zu cachen","Um lokale Kopien von Assemblys zu verwalten","Um tempor\u00E4re Daten w\u00E4hrend der Programmausf\u00FChrung zu halten"],"CorrectAnswersIndex":[0],"Explanation":"Der GAC speichert Assemblys, die speziell daf\u00FCr vorgesehen sind, von mehreren Anwendungen gemeinsam genutzt zu werden.","Tip":"\u00DCberlege, wie .NET gemeinsam genutzte Bibliotheken handhabt.","Tags":[".NET","Assemblys","GAC"],"Difficulty":"Hard"},{"Id":12,"QuestionText":"Welche Aussage beschreibt die Dependency Injection in ASP.NET Core am besten?","PossibleAnswers":["Ein Entwurfsmuster zur Erstellung eng gekoppelter Klassen","Eine Methode, um Code in die HTTP-Anforderungspipeline einzuf\u00FCgen","Eine Technik, um Inversion of Control zu erreichen, indem Abh\u00E4ngigkeiten einer Klasse bereitgestellt werden","Ein Ansatz, um Abh\u00E4ngigkeiten zur Laufzeit mithilfe von Reflection einzuf\u00FCgen"],"CorrectAnswersIndex":[2],"Explanation":"Dependency Injection ist eine Technik, bei der ein Objekt andere Objekte erh\u00E4lt, von denen es abh\u00E4ngt, typischerweise erreicht durch Inversion-of-Control-Container.","Tip":"Denke dar\u00FCber nach, wie ASP.NET Core Dienste und Abh\u00E4ngigkeiten verwaltet.","Tags":["ASP.NET Core","Dependency Injection","Entwurfsmuster"],"Difficulty":"Medium"},{"Id":13,"QuestionText":"Welche der folgenden sind g\u00FCltige Methoden zur Behandlung von Ausnahmen in C#?","PossibleAnswers":["Verwendung von try-catch-Bl\u00F6cken","Verwendung von throw-Anweisungen","Ausnahmen ignorieren, um sie propagieren zu lassen","Verwendung von async-await zum Abfangen von Ausnahmen"],"CorrectAnswersIndex":[0,1,2],"Explanation":"Ausnahmen k\u00F6nnen mit try-catch-Bl\u00F6cken behandelt, mit \u0027throw\u0027 geworfen oder ignoriert werden, um sie an h\u00F6here Ebenen zu propagieren. Obwohl async-await mit Ausnahmen verwendet werden kann, ist es keine direkte Methode zur Ausnahmebehandlung.","Tip":"\u00DCberlege dir die Standardpraktiken f\u00FCr die Ausnahmebehandlung in C#.","Tags":["C#","Ausnahmebehandlung","Fehlerbehandlung"],"Difficulty":"Medium"},{"Id":14,"QuestionText":"Was bewirkt die \u0027using\u0027-Anweisung in C#?","PossibleAnswers":["Schlie\u00DFt Namespaces ein","Stellt die Freigabe von Ressourcen sicher","Definiert ein Alias f\u00FCr einen Namespace oder einen Typ","Startet einen Thread"],"CorrectAnswersIndex":[0,1,2],"Explanation":"Das Schl\u00FCsselwort \u0027using\u0027 hat mehrere Verwendungen: Importieren von Namespaces, Erstellen eines G\u00FCltigkeitsbereichs f\u00FCr Objekte zur Sicherstellung der Freigabe und Definieren von Aliassen.","Tip":"Erinnere dich an die verschiedenen Kontexte, in denen \u0027using\u0027 verwendet wird.","Tags":["C#","Schl\u00FCsselw\u00F6rter","Ressourcenverwaltung"],"Difficulty":"Medium"},{"Id":15,"QuestionText":"Welche Funktion erm\u00F6glicht es .NET-Code, mit in anderen Sprachen geschriebenem Code zusammenzuarbeiten?","PossibleAnswers":["Common Type System (CTS)","Common Language Specification (CLS)","Common Language Runtime (CLR)","Intermediate Language (IL)"],"CorrectAnswersIndex":[1],"Explanation":"Die CLS definiert einen Satz gemeinsamer Typen und Programmierkonstrukte, auf die sich alle .NET-Sprachen einigen k\u00F6nnen, und erleichtert so die Sprachinteroperabilit\u00E4t.","Tip":"Denke an Standards in .NET, die Interoperabilit\u00E4t f\u00F6rdern.","Tags":[".NET","Sprachinteroperabilit\u00E4t","CLS"],"Difficulty":"Hard"},{"Id":16,"QuestionText":"Was ist der Unterschied zwischen einer abstrakten Klasse und einem Interface in C#?","PossibleAnswers":["Eine abstrakte Klasse kann Implementierungen haben, ein Interface nicht","Eine Klasse kann von mehreren abstrakten Klassen erben","Ein Interface kann Felder enthalten","Eine Klasse kann mehrere Interfaces implementieren"],"CorrectAnswersIndex":[0,3],"Explanation":"In C# kann eine abstrakte Klasse Implementierungen enthalten, w\u00E4hrend ein Interface dies nicht kann (vor C# 8.0). Eine Klasse kann mehrere Interfaces implementieren, aber nur von einer Klasse erben.","Tip":"Denke an die Regeln f\u00FCr Vererbung und Implementierung in C#.","Tags":["C#","OOP","Abstrakte Klassen","Interfaces"],"Difficulty":"Medium"},{"Id":17,"QuestionText":"Was ist Middleware in ASP.NET Core?","PossibleAnswers":["Software, die zwei separate Anwendungen verbindet","Komponenten, die die HTTP-Anforderungspipeline bilden","Klassen, die direkt mit der Datenbank interagieren","Ein Entwurfsmuster f\u00FCr den Datenzugriff"],"CorrectAnswersIndex":[1],"Explanation":"In ASP.NET Core sind Middleware Komponenten, die zu einer Pipeline zusammengestellt werden, um Anfragen und Antworten zu verarbeiten.","Tip":"\u00DCberlege, wie ASP.NET Core HTTP-Anforderungen verarbeitet.","Tags":["ASP.NET Core","Middleware","HTTP-Pipeline"],"Difficulty":"Medium"},{"Id":18,"QuestionText":"Was ist der Unterschied zwischen den Schl\u00FCsselw\u00F6rtern \u0027ref\u0027 und \u0027out\u0027 beim \u00DCbergeben von Parametern in C#?","PossibleAnswers":["\u0027ref\u0027 erfordert, dass die Variable vor der \u00DCbergabe initialisiert wird","\u0027out\u0027 erfordert, dass die Variable vor der \u00DCbergabe initialisiert wird","Sowohl \u0027ref\u0027 als auch \u0027out\u0027 erm\u00F6glichen das \u00DCbergeben von Argumenten als Referenz","Variablen, die mit \u0027out\u0027 \u00FCbergeben werden, m\u00FCssen vor der R\u00FCckgabe der Methode einen Wert zugewiesen bekommen"],"CorrectAnswersIndex":[0,2,3],"Explanation":"Bei \u0027ref\u0027 muss die Variable vor der \u00DCbergabe initialisiert sein. Sowohl \u0027ref\u0027 als auch \u0027out\u0027 \u00FCbergeben Argumente als Referenz. Bei \u0027out\u0027 muss der Parameter innerhalb der Methode einen Wert erhalten.","Tip":"\u00DCberlege, wie die \u00DCbergabe von Parametern als Referenz in C# funktioniert.","Tags":["C#","Schl\u00FCsselw\u00F6rter","Parameter\u00FCbergabe"],"Difficulty":"Hard"},{"Id":19,"QuestionText":"Was ist der Zweck des Schl\u00FCsselworts \u0027async\u0027 in einer ASP.NET Core Controller-Aktion?","PossibleAnswers":["Um die Aktion auf einem separaten Thread auszuf\u00FChren","Um dem Server zu erm\u00F6glichen, mehr Anfragen zu verarbeiten, indem Threads nicht blockiert werden","Um die Leistung von E/A-gebundenen Operationen zu verbessern","Um die Verwendung von \u0027await\u0027 f\u00FCr asynchrone Aufrufe innerhalb der Aktion zu erm\u00F6glichen"],"CorrectAnswersIndex":[1,2,3],"Explanation":"Das Schl\u00FCsselwort \u0027async\u0027 erm\u00F6glicht es, asynchrone Methoden zu definieren, die \u0027await\u0027 verwenden k\u00F6nnen. Dies hilft, Threads nicht zu blockieren, wodurch der Server mehr Anfragen gleichzeitig verarbeiten kann, besonders bei E/A-gebundenen Operationen.","Tip":"Denke dar\u00FCber nach, wie Asynchronit\u00E4t die Skalierbarkeit von Webanwendungen beeinflusst.","Tags":["ASP.NET Core","Asynchrones Programmieren","Controller"],"Difficulty":"Medium"},{"Id":20,"QuestionText":"Was ist der Zweck der DbContext-Klasse in Entity Framework Core?","PossibleAnswers":["Um die Datenbankverbindung zu konfigurieren und Entit\u00E4ten zu verwalten","Um eine Tabelle in der Datenbank darzustellen","Um nur rohe SQL-Abfragen auszuf\u00FChren","Um Migrationen zu verwalten und das Datenbankschema zu aktualisieren"],"CorrectAnswersIndex":[0],"Explanation":"Die DbContext-Klasse verwaltet die Verbindung, Konfiguration und CRUD-Operationen f\u00FCr Entit\u00E4ten in Entity Framework Core.","Tip":"\u00DCberlege, wie Entity Framework die Datenbankinteraktionen abstrahiert.","Tags":["Entity Framework Core","DbContext","ORM"],"Difficulty":"Medium"}]},{"Id":2,"Name":"Erotik Quiz","Description":"Hei\u00DFe Fragen f\u00FCr geile Feger","Questions":[{"Id":23,"QuestionText":"Wer wurde durch seinen Bericht \u00FCber das menschliche Sexualverhalten bekannt?","PossibleAnswers":["Casanova","Konrad Lorenz","Alfred Adler","Alfred Charles Kinsey"],"CorrectAnswersIndex":[2],"Explanation":"Frag Google","Tip":"Klingt wie eine Pokemon K\u00E4sesturm-Attacke","Tags":[],"Difficulty":"Easy"},{"Id":24,"QuestionText":null,"PossibleAnswers":["asd","tata","xD"],"CorrectAnswersIndex":[1],"Explanation":"ho","Tip":"he","Tags":[],"Difficulty":"Easy"}]},{"Id":3,"Name":"Fleischk\u00E4se Quiz","Description":"Prei\u00DFn Beschreibung","Questions":[]},{"Id":4,"Name":"test set","Description":"test description","Questions":[]}]
+[
+  {
+    "Id": 1,
+    "Name": "C#, .NET und ASP.NET Lernset",
+    "Description": "Ein Lernset mit Fragen zu C#, .NET und dem ASP.NET Framework.",
+    "Questions": [
+      {
+        "Id": 1,
+        "QuestionText": "Was ist der Hauptzweck der Common Language Runtime (CLR) in .NET?",
+        "PossibleAnswers": [
+          "C#-Code in Maschinencode zu kompilieren",
+          "Speicherverwaltung und Sicherheitsdienste bereitzustellen",
+          "HTML in Webseiten zu \u00FCbersetzen",
+          "Datenbankverbindungen zu verwalten"
+        ],
+        "CorrectAnswersIndex": [1],
+        "Explanation": "Die CLR bietet Dienste wie Speicherverwaltung, Typensicherheit, Ausnahmebehandlung, Garbage Collection und Sicherheit.",
+        "Tip": "Denke an die Kerndienste, die die .NET-Laufzeit bereitstellt.",
+        "Tags": ["C#", ".NET", "CLR", "Laufzeit"],
+        "Difficulty": "Easy"
+      },
+      {
+        "Id": 2,
+        "QuestionText": "Welche der folgenden sind g\u00FCltige Zugriffsmodifizierer in C#?",
+        "PossibleAnswers": [
+          "public",
+          "protected",
+          "private",
+          "secure",
+          "internal"
+        ],
+        "CorrectAnswersIndex": [0, 1, 2, 4],
+        "Explanation": "C# hat public, protected, private, internal und protected internal als Zugriffsmodifizierer. \u0027secure\u0027 ist kein g\u00FCltiger Zugriffsmodifizierer in C#.",
+        "Tip": "Erinnere dich an die Schl\u00FCsselw\u00F6rter, die die Zug\u00E4nglichkeit von Klassen und Klassenmitgliedern definieren.",
+        "Tags": ["C#", "Zugriffsmodifizierer", "OOP"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 3,
+        "QuestionText": "Was ist ASP.NET Core?",
+        "PossibleAnswers": [
+          "Ein plattform\u00FCbergreifendes, leistungsstarkes Framework zum Erstellen moderner Webanwendungen",
+          "Eine veraltete Version von ASP.NET",
+          "Ein ausschlie\u00DFlich f\u00FCr Windows verf\u00FCgbares Webentwicklungsframework",
+          "Ein Datenbankverwaltungssystem"
+        ],
+        "CorrectAnswersIndex": [0],
+        "Explanation": "ASP.NET Core ist ein plattform\u00FCbergreifendes, quelloffenes Framework zum Erstellen moderner, cloudbasierter und internetverbundener Anwendungen.",
+        "Tip": "Denke an die j\u00FCngsten Entwicklungen in der ASP.NET-Technologie.",
+        "Tags": ["ASP.NET", "ASP.NET Core", "Webentwicklung"],
+        "Difficulty": "Easy"
+      },
+      {
+        "Id": 4,
+        "QuestionText": "Welches Schl\u00FCsselwort wird in C# verwendet, um eine Methode zu definieren, die in einer abgeleiteten Klasse \u00FCberschrieben werden kann?",
+        "PossibleAnswers": ["abstract", "virtual", "override", "sealed"],
+        "CorrectAnswersIndex": [1],
+        "Explanation": "Das Schl\u00FCsselwort \u0027virtual\u0027 erm\u00F6glicht es, eine Methode in jeder abgeleiteten Klasse zu \u00FCberschreiben.",
+        "Tip": "Denke an Methoden\u00FCberschreibung in der Vererbung.",
+        "Tags": ["C#", "OOP", "Vererbung"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 5,
+        "QuestionText": "Welche der folgenden sind Merkmale von .NET 6?",
+        "PossibleAnswers": [
+          "Vereinheitlichte Plattform f\u00FCr Browser-, Cloud-, Desktop- und Mobile-Apps",
+          "Unterst\u00FCtzung f\u00FCr C# 10",
+          "Veraltete Unterst\u00FCtzung f\u00FCr Windows Forms",
+          "Verbesserte Leistung und Hot Reload"
+        ],
+        "CorrectAnswersIndex": [0, 1, 3],
+        "Explanation": ".NET 6 f\u00FChrte eine vereinheitlichte Plattform, Unterst\u00FCtzung f\u00FCr C# 10, verbesserte Leistung und Hot Reload-Funktionen ein. Die Unterst\u00FCtzung f\u00FCr Windows Forms wurde nicht eingestellt.",
+        "Tip": "Erinnere dich an die wichtigsten Aktualisierungen in den neuesten .NET-Versionen.",
+        "Tags": [".NET", ".NET 6", "C#", "Features"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 6,
+        "QuestionText": "Welche Aussagen \u00FCber die Garbage Collection in .NET sind wahr?",
+        "PossibleAnswers": [
+          "Sie gibt automatisch Speicher frei, der von ungenutzten Objekten belegt wird",
+          "Entwickler m\u00FCssen die Garbage Collection manuell ausl\u00F6sen",
+          "Die Garbage Collection ist nicht-deterministisch",
+          "Sie hilft, Speicherlecks zu verhindern"
+        ],
+        "CorrectAnswersIndex": [0, 2, 3],
+        "Explanation": "Der Garbage Collector gibt automatisch den von nicht mehr verwendeten Objekten belegten Speicher frei. Er arbeitet nicht-deterministisch, und er hilft, Speicherlecks zu verhindern.",
+        "Tip": "\u00DCberlege, wie die Speicherverwaltung in .NET gehandhabt wird.",
+        "Tags": [".NET", "Garbage Collection", "Speicherverwaltung"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 7,
+        "QuestionText": "Welcher Bestandteil ist in ASP.NET MVC f\u00FCr die Verarbeitung von Benutzereingaben und die Interaktion mit dem Modell verantwortlich?",
+        "PossibleAnswers": ["Model", "View", "Controller", "Router"],
+        "CorrectAnswersIndex": [2],
+        "Explanation": "Im MVC-Muster verarbeitet der Controller Benutzereingaben und Interaktionen und aktualisiert bei Bedarf das Modell.",
+        "Tip": "Denke an die Komponenten des MVC-Designmusters.",
+        "Tags": ["ASP.NET", "MVC", "Design Patterns"],
+        "Difficulty": "Easy"
+      },
+      {
+        "Id": 8,
+        "QuestionText": "Welche der folgenden LINQ-Abfrageoperatoren werden f\u00FCr Projektion verwendet?",
+        "PossibleAnswers": ["Select", "Where", "GroupBy", "OrderBy"],
+        "CorrectAnswersIndex": [0],
+        "Explanation": "\u0027Select\u0027 wird in LINQ-Abfragen f\u00FCr die Projektion verwendet. \u0027Where\u0027 dient zum Filtern, \u0027GroupBy\u0027 zum Gruppieren und \u0027OrderBy\u0027 zum Sortieren.",
+        "Tip": "Erinnere dich an den Zweck jedes LINQ-Abfrageoperators.",
+        "Tags": ["C#", "LINQ", "Datenabfrage"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 9,
+        "QuestionText": "Was ist der Zweck der Schl\u00FCsselw\u00F6rter \u0027async\u0027 und \u0027await\u0027 in C#?",
+        "PossibleAnswers": [
+          "Um Ausnahmen zu behandeln",
+          "Um asynchrone Methoden zu definieren",
+          "Um Multithreading-Code einfacher zu schreiben",
+          "Um sicherzustellen, dass Code synchron ausgef\u00FChrt wird"
+        ],
+        "CorrectAnswersIndex": [1, 2],
+        "Explanation": "\u0027async\u0027 und \u0027await\u0027 werden verwendet, um asynchrone Methoden zu definieren und es einfacher zu machen, Code zu schreiben, der asynchron ausgef\u00FChrt wird und Multithreading handhabt.",
+        "Tip": "Denke dar\u00FCber nach, wie C# asynchrone Operationen behandelt.",
+        "Tags": ["C#", "Asynchrones Programmieren", "Multithreading"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 10,
+        "QuestionText": "Welche Datentypen sind Wertetypen in C#?",
+        "PossibleAnswers": ["int", "string", "bool", "object", "struct"],
+        "CorrectAnswersIndex": [0, 2, 4],
+        "Explanation": "In C# sind Wertetypen primitive Typen wie int und bool sowie Strukturen. \u0027string\u0027 und \u0027object\u0027 sind Referenztypen.",
+        "Tip": "Erinnere dich an den Unterschied zwischen Wertetypen und Referenztypen in C#.",
+        "Tags": ["C#", "Datentypen", "Wertetypen"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 11,
+        "QuestionText": "Was ist der Zweck des Global Assembly Cache (GAC) in .NET?",
+        "PossibleAnswers": [
+          "Um gemeinsam genutzte Assemblys zu speichern, die von mehreren Anwendungen verwendet werden k\u00F6nnen",
+          "Um Webseiten f\u00FCr schnelleres Laden zu cachen",
+          "Um lokale Kopien von Assemblys zu verwalten",
+          "Um tempor\u00E4re Daten w\u00E4hrend der Programmausf\u00FChrung zu halten"
+        ],
+        "CorrectAnswersIndex": [0],
+        "Explanation": "Der GAC speichert Assemblys, die speziell daf\u00FCr vorgesehen sind, von mehreren Anwendungen gemeinsam genutzt zu werden.",
+        "Tip": "\u00DCberlege, wie .NET gemeinsam genutzte Bibliotheken handhabt.",
+        "Tags": [".NET", "Assemblys", "GAC"],
+        "Difficulty": "Hard"
+      },
+      {
+        "Id": 12,
+        "QuestionText": "Welche Aussage beschreibt die Dependency Injection in ASP.NET Core am besten?",
+        "PossibleAnswers": [
+          "Ein Entwurfsmuster zur Erstellung eng gekoppelter Klassen",
+          "Eine Methode, um Code in die HTTP-Anforderungspipeline einzuf\u00FCgen",
+          "Eine Technik, um Inversion of Control zu erreichen, indem Abh\u00E4ngigkeiten einer Klasse bereitgestellt werden",
+          "Ein Ansatz, um Abh\u00E4ngigkeiten zur Laufzeit mithilfe von Reflection einzuf\u00FCgen"
+        ],
+        "CorrectAnswersIndex": [2],
+        "Explanation": "Dependency Injection ist eine Technik, bei der ein Objekt andere Objekte erh\u00E4lt, von denen es abh\u00E4ngt, typischerweise erreicht durch Inversion-of-Control-Container.",
+        "Tip": "Denke dar\u00FCber nach, wie ASP.NET Core Dienste und Abh\u00E4ngigkeiten verwaltet.",
+        "Tags": ["ASP.NET Core", "Dependency Injection", "Entwurfsmuster"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 13,
+        "QuestionText": "Welche der folgenden sind g\u00FCltige Methoden zur Behandlung von Ausnahmen in C#?",
+        "PossibleAnswers": [
+          "Verwendung von try-catch-Bl\u00F6cken",
+          "Verwendung von throw-Anweisungen",
+          "Ausnahmen ignorieren, um sie propagieren zu lassen",
+          "Verwendung von async-await zum Abfangen von Ausnahmen"
+        ],
+        "CorrectAnswersIndex": [0, 1, 2],
+        "Explanation": "Ausnahmen k\u00F6nnen mit try-catch-Bl\u00F6cken behandelt, mit \u0027throw\u0027 geworfen oder ignoriert werden, um sie an h\u00F6here Ebenen zu propagieren. Obwohl async-await mit Ausnahmen verwendet werden kann, ist es keine direkte Methode zur Ausnahmebehandlung.",
+        "Tip": "\u00DCberlege dir die Standardpraktiken f\u00FCr die Ausnahmebehandlung in C#.",
+        "Tags": ["C#", "Ausnahmebehandlung", "Fehlerbehandlung"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 14,
+        "QuestionText": "Was bewirkt die \u0027using\u0027-Anweisung in C#?",
+        "PossibleAnswers": [
+          "Schlie\u00DFt Namespaces ein",
+          "Stellt die Freigabe von Ressourcen sicher",
+          "Definiert ein Alias f\u00FCr einen Namespace oder einen Typ",
+          "Startet einen Thread"
+        ],
+        "CorrectAnswersIndex": [0, 1, 2],
+        "Explanation": "Das Schl\u00FCsselwort \u0027using\u0027 hat mehrere Verwendungen: Importieren von Namespaces, Erstellen eines G\u00FCltigkeitsbereichs f\u00FCr Objekte zur Sicherstellung der Freigabe und Definieren von Aliassen.",
+        "Tip": "Erinnere dich an die verschiedenen Kontexte, in denen \u0027using\u0027 verwendet wird.",
+        "Tags": ["C#", "Schl\u00FCsselw\u00F6rter", "Ressourcenverwaltung"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 15,
+        "QuestionText": "Welche Funktion erm\u00F6glicht es .NET-Code, mit in anderen Sprachen geschriebenem Code zusammenzuarbeiten?",
+        "PossibleAnswers": [
+          "Common Type System (CTS)",
+          "Common Language Specification (CLS)",
+          "Common Language Runtime (CLR)",
+          "Intermediate Language (IL)"
+        ],
+        "CorrectAnswersIndex": [1],
+        "Explanation": "Die CLS definiert einen Satz gemeinsamer Typen und Programmierkonstrukte, auf die sich alle .NET-Sprachen einigen k\u00F6nnen, und erleichtert so die Sprachinteroperabilit\u00E4t.",
+        "Tip": "Denke an Standards in .NET, die Interoperabilit\u00E4t f\u00F6rdern.",
+        "Tags": [".NET", "Sprachinteroperabilit\u00E4t", "CLS"],
+        "Difficulty": "Hard"
+      },
+      {
+        "Id": 16,
+        "QuestionText": "Was ist der Unterschied zwischen einer abstrakten Klasse und einem Interface in C#?",
+        "PossibleAnswers": [
+          "Eine abstrakte Klasse kann Implementierungen haben, ein Interface nicht",
+          "Eine Klasse kann von mehreren abstrakten Klassen erben",
+          "Ein Interface kann Felder enthalten",
+          "Eine Klasse kann mehrere Interfaces implementieren"
+        ],
+        "CorrectAnswersIndex": [0, 3],
+        "Explanation": "In C# kann eine abstrakte Klasse Implementierungen enthalten, w\u00E4hrend ein Interface dies nicht kann (vor C# 8.0). Eine Klasse kann mehrere Interfaces implementieren, aber nur von einer Klasse erben.",
+        "Tip": "Denke an die Regeln f\u00FCr Vererbung und Implementierung in C#.",
+        "Tags": ["C#", "OOP", "Abstrakte Klassen", "Interfaces"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 17,
+        "QuestionText": "Was ist Middleware in ASP.NET Core?",
+        "PossibleAnswers": [
+          "Software, die zwei separate Anwendungen verbindet",
+          "Komponenten, die die HTTP-Anforderungspipeline bilden",
+          "Klassen, die direkt mit der Datenbank interagieren",
+          "Ein Entwurfsmuster f\u00FCr den Datenzugriff"
+        ],
+        "CorrectAnswersIndex": [1],
+        "Explanation": "In ASP.NET Core sind Middleware Komponenten, die zu einer Pipeline zusammengestellt werden, um Anfragen und Antworten zu verarbeiten.",
+        "Tip": "\u00DCberlege, wie ASP.NET Core HTTP-Anforderungen verarbeitet.",
+        "Tags": ["ASP.NET Core", "Middleware", "HTTP-Pipeline"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 18,
+        "QuestionText": "Was ist der Unterschied zwischen den Schl\u00FCsselw\u00F6rtern \u0027ref\u0027 und \u0027out\u0027 beim \u00DCbergeben von Parametern in C#?",
+        "PossibleAnswers": [
+          "\u0027ref\u0027 erfordert, dass die Variable vor der \u00DCbergabe initialisiert wird",
+          "\u0027out\u0027 erfordert, dass die Variable vor der \u00DCbergabe initialisiert wird",
+          "Sowohl \u0027ref\u0027 als auch \u0027out\u0027 erm\u00F6glichen das \u00DCbergeben von Argumenten als Referenz",
+          "Variablen, die mit \u0027out\u0027 \u00FCbergeben werden, m\u00FCssen vor der R\u00FCckgabe der Methode einen Wert zugewiesen bekommen"
+        ],
+        "CorrectAnswersIndex": [0, 2, 3],
+        "Explanation": "Bei \u0027ref\u0027 muss die Variable vor der \u00DCbergabe initialisiert sein. Sowohl \u0027ref\u0027 als auch \u0027out\u0027 \u00FCbergeben Argumente als Referenz. Bei \u0027out\u0027 muss der Parameter innerhalb der Methode einen Wert erhalten.",
+        "Tip": "\u00DCberlege, wie die \u00DCbergabe von Parametern als Referenz in C# funktioniert.",
+        "Tags": ["C#", "Schl\u00FCsselw\u00F6rter", "Parameter\u00FCbergabe"],
+        "Difficulty": "Hard"
+      },
+      {
+        "Id": 19,
+        "QuestionText": "Was ist der Zweck des Schl\u00FCsselworts \u0027async\u0027 in einer ASP.NET Core Controller-Aktion?",
+        "PossibleAnswers": [
+          "Um die Aktion auf einem separaten Thread auszuf\u00FChren",
+          "Um dem Server zu erm\u00F6glichen, mehr Anfragen zu verarbeiten, indem Threads nicht blockiert werden",
+          "Um die Leistung von E/A-gebundenen Operationen zu verbessern",
+          "Um die Verwendung von \u0027await\u0027 f\u00FCr asynchrone Aufrufe innerhalb der Aktion zu erm\u00F6glichen"
+        ],
+        "CorrectAnswersIndex": [1, 2, 3],
+        "Explanation": "Das Schl\u00FCsselwort \u0027async\u0027 erm\u00F6glicht es, asynchrone Methoden zu definieren, die \u0027await\u0027 verwenden k\u00F6nnen. Dies hilft, Threads nicht zu blockieren, wodurch der Server mehr Anfragen gleichzeitig verarbeiten kann, besonders bei E/A-gebundenen Operationen.",
+        "Tip": "Denke dar\u00FCber nach, wie Asynchronit\u00E4t die Skalierbarkeit von Webanwendungen beeinflusst.",
+        "Tags": ["ASP.NET Core", "Asynchrones Programmieren", "Controller"],
+        "Difficulty": "Medium"
+      },
+      {
+        "Id": 20,
+        "QuestionText": "Was ist der Zweck der DbContext-Klasse in Entity Framework Core?",
+        "PossibleAnswers": [
+          "Um die Datenbankverbindung zu konfigurieren und Entit\u00E4ten zu verwalten",
+          "Um eine Tabelle in der Datenbank darzustellen",
+          "Um nur rohe SQL-Abfragen auszuf\u00FChren",
+          "Um Migrationen zu verwalten und das Datenbankschema zu aktualisieren"
+        ],
+        "CorrectAnswersIndex": [0],
+        "Explanation": "Die DbContext-Klasse verwaltet die Verbindung, Konfiguration und CRUD-Operationen f\u00FCr Entit\u00E4ten in Entity Framework Core.",
+        "Tip": "\u00DCberlege, wie Entity Framework die Datenbankinteraktionen abstrahiert.",
+        "Tags": ["Entity Framework Core", "DbContext", "ORM"],
+        "Difficulty": "Medium"
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "Erotik Quiz",
+    "Description": "Hei\u00DFe Fragen f\u00FCr geile Feger",
+    "Questions": [
+      {
+        "Id": 23,
+        "QuestionText": "Wer wurde durch seinen Bericht \u00FCber das menschliche Sexualverhalten bekannt?",
+        "PossibleAnswers": [
+          "Casanova",
+          "Konrad Lorenz",
+          "Alfred Adler",
+          "Alfred Charles Kinsey"
+        ],
+        "CorrectAnswersIndex": [2],
+        "Explanation": "Frag Google",
+        "Tip": "Klingt wie eine Pokemon K\u00E4sesturm-Attacke",
+        "Tags": [],
+        "Difficulty": "Easy"
+      },
+      {
+        "Id": 24,
+        "QuestionText": null,
+        "PossibleAnswers": ["asd", "tata", "xD"],
+        "CorrectAnswersIndex": [1],
+        "Explanation": "ho",
+        "Tip": "he",
+        "Tags": [],
+        "Difficulty": "Easy"
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "Name": "Fleischk\u00E4se Quiz",
+    "Description": "Prei\u00DFn Beschreibung",
+    "Questions": []
+  },
+  {
+    "Id": 4,
+    "Name": "test set",
+    "Description": "test description",
+    "Questions": []
+  },
+  {
+    "Id": 5,
+    "Name": "Datenbanken",
+    "Description": "Fragen zu relationalen Datenbanken",
+    "Questions": []
+  }
+]

@@ -14,6 +14,8 @@ function setupHTMLContent(htmlContent, newPage) {
     setupFrontPage();
   } else if (newPage === "ExampleCards") {
     setupIndexCards();
+  } else if (newPage === "CreateCard") {
+    setupCreateCardPage();
   }
   return htmlContent;
 }
@@ -273,6 +275,8 @@ function createNewPage(questionSet) {
   const indexCardAnswers = document.createElement("div");
   indexCardAnswers.setAttribute("class", "index-card-answers");
   const answerList = document.createElement("ul");
+  const showCorrectAnswerButton = document.createElement("button");
+  showCorrectAnswerButton.textContent = "Antwort anzeigen";
   const nextButton = document.createElement("button");
   nextButton.setAttribute("id", "next-question-button");
   nextButton.textContent = "Nächste Karte";
@@ -283,6 +287,7 @@ function createNewPage(questionSet) {
   indexCard.appendChild(indexCardHeader);
   indexCardHeader.appendChild(indexCardTitle);
   indexCard.appendChild(indexCardAnswers);
+  indexCard.appendChild(showCorrectAnswerButton);
   indexCardAnswers.appendChild(answerList);
   currentPageContent.appendChild(nextButton);
   renderRandomQuestion(questionSet.id, indexCardTitle, answerList);
@@ -291,27 +296,185 @@ function createNewPage(questionSet) {
   });
 }
 
-/**
- * Displays a random question from a specified question set.
- * @param {number} questionSetId - The ID of the question set to fetch a random question from.
- * @param {string} title - The HTML element where the question text will be displayed.
- * @param {HTMLElement} answerContainer - The HTML element where the possible answers will be displayed.
- */
-function renderRandomQuestion(questionSetId, title, answerContainer) {
-  fetchIndexCardData(`questionSets/${questionSetId}/randomQuestions`)
-    .then((data) => {
-      title.textContent = data.questionText;
-      answerContainer.innerHTML = "";
-      data.possibleAnswers.forEach((answer) => {
-        const answerItem = document.createElement("li");
-        answerItem.textContent = answer;
-        answerContainer.appendChild(answerItem);
-      });
-    })
-    .catch((error) => {
-      console.error("Error fetching random question:", error);
-      title.textContent = "Keine Karten verfügbar.";
-    });
+// /**
+//  * Displays a random question from a specified question set.
+//  * @param {number} questionSetId - The ID of the question set to fetch a random question from.
+//  * @param {string} title - The HTML element where the question text will be displayed.
+//  * @param {HTMLElement} answerContainer - The HTML element where the possible answers will be displayed.
+//  */
+// function renderRandomQuestion(questionSetId, title, answerContainer) {
+//   fetchIndexCardData(`questionSets/${questionSetId}/randomQuestions`)
+//     .then((data) => {
+//       title.textContent = data.questionText;
+//       answerContainer.innerHTML = "";
+//       data.possibleAnswers.forEach((answer) => {
+//         const answerItem = document.createElement("li");
+//         answerItem.textContent = answer;
+//         answerContainer.appendChild(answerItem);
+//       });
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching random question:", error);
+//       title.textContent = "Keine Karten verfügbar.";
+//     });
+// }
+
+async function fetchRandomQuestionData(questionSetId) {
+  return fetchIndexCardData(`questionSets/${questionSetId}/randomQuestions`);
+}
+
+function renderQuestionToDOM(data, title, answerContainer) {
+  title.textContent = data.questionText;
+  answerContainer.innerHTML = "";
+  data.possibleAnswers.forEach((answer) => {
+    const answerItem = document.createElement("li");
+    answerItem.textContent = answer;
+    answerContainer.appendChild(answerItem);
+  });
+}
+
+async function renderRandomQuestion(questionSetId, title, answerContainer) {
+  try {
+    const data = await fetchRandomQuestionData(questionSetId);
+    renderQuestionToDOM(data, title, answerContainer);
+    return data;
+  } catch (error) {
+    console.error("Error fetching random question:", error);
+    title.textContent = "Keine Karten verfügbar.";
+    return null;
+  }
+}
+
+async function displayCorrectAnswer(questionId, fetchQuestionFn) {
+  const question = await fetchQuestionFn(questionId);
+  const correctAnswerIndex = question.correctAnswersIndex;
+  const correctAnswer = question.possibleAnswers[correctAnswerIndex];
+  console.log("Correct answer:", correctAnswer);
+}
+
+//#endregion
+
+//#region index card and question set creation
+
+function setupCreateCardPage() {
+  const creationDropdown = document.getElementById("create-selection");
+  const questionSetCreateButton = document.getElementById(
+    "question-set-create-button"
+  );
+  const indexCardCreateButton = document.getElementById(
+    "index-card-create-button"
+  );
+  creationDropdown.addEventListener("change", () =>
+    toggleItemCreationVisibility(creationDropdown.value)
+  );
+  accumulateQuestionSets();
+}
+
+function toggleItemCreationVisibility(dropdownValue) {
+  const selectedValue = dropdownValue;
+  const indexCardCreation = document.querySelector(".index-card-creation");
+  const questionSetCreation = document.querySelector(".question-set-creation");
+  if (selectedValue === "existing") {
+    indexCardCreation.style.display = "block";
+    questionSetCreation.style.display = "none";
+  } else if (selectedValue === "new") {
+    indexCardCreation.style.display = "none";
+    questionSetCreation.style.display = "block";
+  } else {
+    indexCardCreation.style.display = "none";
+    questionSetCreation.style.display = "none";
+  }
+}
+
+//#endregion
+
+async function accumulateQuestionSets() {
+  const questionSets = await fetchIndexCardData("questionSets");
+  const questionSetDropdown = document.getElementById("question-set-dropdown");
+  questionSetDropdown.innerHTML = "";
+  questionSets.forEach((questionSet) => {
+    const option = document.createElement("option");
+    option.value = questionSet.id;
+    option.textContent = questionSet.name;
+    questionSetDropdown.appendChild(option);
+  });
+}
+
+//#region CRUD operations for index cards and question sets
+
+async function getQuestionSetById(questionSetId) {
+  const response = await fetch(`/api/question/questionSets/${questionSetId}`);
+  if (!response.ok) {
+    throw new Error("Error fetching question set");
+  }
+  return response.json();
+}
+
+async function getQuestionById(questionId) {
+  const response = await fetch(`/api/question/questions/${questionId}`);
+  if (!response.ok) {
+    throw new Error("Error fetching question");
+  }
+  return response.json();
+}
+
+async function createIndexCard(questionSetId, questionText, possibleAnswers) {
+  const response = await fetch(
+    `/api/question/questionSets/${questionSetId}/questions`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        questionText: questionText,
+        possibleAnswers: possibleAnswers,
+      }),
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Error creating index card");
+  }
+  return response.json();
+}
+
+async function createQuestionSet(name, description) {
+  const response = await fetch(`/api/question/questionSets`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error("Error creating question set");
+  }
+  return response.json();
+}
+
+async function updateQuestionSet(questionSetId, name, description) {
+  const response = await fetch(`/api/question/questionSets/${questionSetId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+    }),
+  });
+}
+
+async function deleteQuestionSet(questionSetId) {
+  const response = await fetch(`/api/question/questionSets/${questionSetId}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Error deleting question set");
+  }
 }
 
 //#endregion

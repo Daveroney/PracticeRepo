@@ -14,5 +14,9 @@ public class QuestionMappingProfile : Profile
             .ReverseMap()
             .ForMember(dest => dest.Difficulty, options => options.MapFrom(src => Enum.Parse<Difficulty>(src.Difficulty)))
                 ;
+        CreateMap<Question, CreateQuestionDTO>().ReverseMap().ForMember(dest => dest.Difficulty, options => options.MapFrom(src => src.Difficulty.ToString()))
+            .ReverseMap()
+            .ForMember(dest => dest.Difficulty, options => options.MapFrom(src => Enum.Parse<Difficulty>(src.Difficulty)))
+            ;
     }
 }

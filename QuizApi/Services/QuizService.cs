@@ -86,9 +86,9 @@ public class QuizService : IQuizService
         return newQuestionSet;
     }
 
-    public async Task<Question> CreateQuestion(int questionSetId, QuestionDTO questionDto)
+    public async Task<Question> CreateQuestion(int questionSetId, CreateQuestionDTO createQuestionDto)
     {
-        var newQuestion = _mapper.Map<Question>(questionDto);
+        var newQuestion = _mapper.Map<Question>(createQuestionDto);
         newQuestion.Id = GenerateNewQuestionId();
 
         var path = @"Data/questionSets.json";

@@ -1,20 +1,52 @@
-<h1>Karteikarten erstellen</h1>
-<div class="index-card-wrapper">
-  <div class="index-card-border">
-    <div class="index-card">
-      <div class="index-card-header">
-        <h2 id="index-card-title">
-          Titel / Frage eingeben
+<h1>Karteikarten anlegen</h1>
+<label for="indexCards">Karteikarten anlegen:</label>
+<select name="indexCards" id="create-selection">
+  <option value="existing">
+    Karteikarte zu bestehender Kategorie hinzufügen
+  </option>
+  <option value="new">Neue Kategorie anlegen</option>
+</select>
+<section class="index-card-creation">
+  <div class="index-card-wrapper">
+    <div class="index-card-border">
+      <div class="index-card">
+        <h3>Question Set</h3>
+        <select name="questionSetDropdown" id="question-set-dropdown"></select>
+        <div class="index-card-header">
+          <h2 id="index-card-title">
+            Titel / Frage eingeben
+            <br />
+            <input type="text" placeholder="Frage eingeben" />
+          </h2>
+        </div>
+        <div class="index-card-answers">
+          <h3>Antwortmöglichkeiten</h3>
+          <input type="text" placeholder="Antwort 1 eingeben" />
           <br />
-          <input type="text" placeholder="Frage eingeben" />
-        </h2>
-      </div>
-      <div class="index-card-answers">
-        <h3>Antwortmöglichkeiten</h3>
-        <input type="text" placeholder="Antwort 1 eingeben" />
-        <br />
-        <button id="create-card-button">Antwort hinzufügen</button>
+          <button id="create-card-button">Antwort hinzufügen</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <button id="index-card-create-button">Karteikarte erstellen</button>
+</section>
+<section class="question-set-creation">
+  <div class="index-card-wrapper">
+    <div class="index-card-border">
+      <div class="index-card">
+        <div class="index-card-header">
+          <h2 id="index-card-title">
+            Kartei-Kategorie
+            <br />
+            <input type="text" placeholder="Kategorie eingeben" />
+          </h2>
+        </div>
+        <div class="index-card-answers">
+          <h3>Beschreibung</h3>
+          <input type="text" placeholder="Beschreibung eingeben" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="question-set-create-button">Kartei-Kategorie erstellen</button>
+</section>

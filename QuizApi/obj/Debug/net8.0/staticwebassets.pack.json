@@ -33,10 +33,6 @@
       "PackagePath": "staticwebassets\\pages\\ManageCards.html"
     },
     {
-      "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\indexCards.js",
-      "PackagePath": "staticwebassets\\scripts\\indexCards.js"
-    },
-    {
       "Id": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\script.js",
       "PackagePath": "staticwebassets\\scripts\\script.js"
     },

@@ -70,11 +70,11 @@ public class QuestionController : ControllerBase
 
     [HttpPost]
     [Route("questionSets/{id}/questions")]
-    public async Task<IResult> CreateQuestion(int id, QuestionDTO questionDto)
+    public async Task<IResult> CreateQuestion(int id, CreateQuestionDTO createQuestionDto)
     {
         try
         {
-            var newQuestion = await _quizService.CreateQuestion(id, questionDto);
+            var newQuestion = await _quizService.CreateQuestion(id, createQuestionDto);
             return Results.Ok(newQuestion);
         }
         catch (QuestionSetNotFoundException e)
