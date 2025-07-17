@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BfPbkfLqS8gBXX0hzfLCG5Av4F2wYN0iw/y52cKZcgo=",
+  "Hash": "sHnkmDfUInq0X3GOmcPqzeiXlQgmvnoPkD/tKGeE1Po=",
   "Source": "QuizApi",
   "BasePath": "_content/QuizApi",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "QuizApi\\wwwroot",
       "Source": "QuizApi",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\icons\\change-management.png",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\icons\\change-management.png",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "icons/change-management.png",
       "AssetKind": "All",
@@ -36,29 +36,10 @@
       "OriginalItemSpec": "wwwroot\\icons\\change-management.png"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\icons\\index-cards.png",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\icons\\paper.png",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
-      "BasePath": "_content/QuizApi",
-      "RelativePath": "icons/index-cards.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\icons\\index-cards.png"
-    },
-    {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\icons\\paper.png",
-      "SourceId": "QuizApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "icons/paper.png",
       "AssetKind": "All",
@@ -74,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\icons\\paper.png"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\index.html",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\index.html",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -93,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\CreateCard.html",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\pages\\CreateCard.html",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "pages/CreateCard.html",
       "AssetKind": "All",
@@ -112,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\pages\\CreateCard.html"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\Frontpage.html",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\pages\\Frontpage.html",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "pages/Frontpage.html",
       "AssetKind": "All",
@@ -131,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\pages\\Frontpage.html"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\pages\\ManageCards.html",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\pages\\ManageCards.html",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "pages/ManageCards.html",
       "AssetKind": "All",
@@ -150,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\pages\\ManageCards.html"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\scripts\\script.js",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\scripts\\script.js",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "scripts/script.js",
       "AssetKind": "All",
@@ -169,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\script.js"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\styles\\mainStyles.css",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\styles\\mainStyles.css",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "styles/mainStyles.css",
       "AssetKind": "All",
@@ -188,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\styles\\mainStyles.css"
     },
     {
-      "Identity": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\styles\\sidebarStyles.css",
+      "Identity": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\styles\\sidebarStyles.css",
       "SourceId": "QuizApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Programming\\QuizApi\\QuizApi\\wwwroot\\",
+      "ContentRoot": "D:\\Programming\\IndexCardApp\\QuizApi\\wwwroot\\",
       "BasePath": "_content/QuizApi",
       "RelativePath": "styles/sidebarStyles.css",
       "AssetKind": "All",

@@ -59,7 +59,7 @@
 
   function loadCurrentContentHtmlInitially() {
     const currentPage = window.location.hash.substring(1);
-    fetchHtmlSheetContent(currentPage);
+    fetchHtmlPageContent(currentPage);
     setActiveSidebarLink(currentPage);
     createCategoriesForObjectsStored();
   }
@@ -70,7 +70,7 @@
     const anchorElement = event.target.closest("a");
     if (anchorElement) {
       const newPage = anchorElement.getAttribute("href").substring(1);
-      fetchHtmlSheetContent(newPage);
+      fetchHtmlPageContent(newPage);
       setActiveSidebarLink(newPage);
     }
   }
@@ -110,10 +110,10 @@
   }
 
   /**
-   * Fetch HTML sheet content for a specified page and set it up for display.
+   * Fetch HTML page content for a specified page and set it up for display.
    * @param {string} newPage - The name or identifier of the new page to fetch content for.
    */
-  function fetchHtmlSheetContent(newPage) {
+  function fetchHtmlPageContent(newPage) {
     if (!newPage) {
       newPage = "Frontpage";
     }
@@ -247,6 +247,7 @@
       answerList
     );
 
+    //TODO - FIX!: This will always return the correct answers for the next question, since the renderRandomQuestion is being called again.
     showCorrectAnswersButton.addEventListener("click", async () => {
       const questionId = questionCardData.id;
       if (questionId) {
@@ -536,49 +537,51 @@
     return response.json();
   }
 
-  async function getQuestionSetById(questionSetId) {
-    const response = await fetch(`/api/question/questionSets/${questionSetId}`);
-    if (!response.ok) {
-      throw new Error("Error fetching question set");
-    }
-    return response.json();
-  }
+  // Unused CRUD operations for question sets and questions
 
-  async function getQuestionById(questionId) {
-    const response = await fetch(`/api/question/questions/${questionId}`);
-    if (!response.ok) {
-      throw new Error("Error fetching question");
-    }
-    return response.json();
-  }
+  // async function getQuestionSetById(questionSetId) {
+  //   const response = await fetch(`/api/question/questionSets/${questionSetId}`);
+  //   if (!response.ok) {
+  //     throw new Error("Error fetching question set");
+  //   }
+  //   return response.json();
+  // }
 
-  async function updateQuestionSet(questionSetId, name, description) {
-    const response = await fetch(
-      `/api/question/questionSets/${questionSetId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          description: description,
-        }),
-      }
-    );
-  }
+  // async function getQuestionById(questionId) {
+  //   const response = await fetch(`/api/question/questions/${questionId}`);
+  //   if (!response.ok) {
+  //     throw new Error("Error fetching question");
+  //   }
+  //   return response.json();
+  // }
 
-  async function deleteQuestionSet(questionSetId) {
-    const response = await fetch(
-      `/api/question/questionSets/${questionSetId}`,
-      {
-        method: "DELETE",
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Error deleting question set");
-    }
-  }
+  // async function updateQuestionSet(questionSetId, name, description) {
+  //   const response = await fetch(
+  //     `/api/question/questionSets/${questionSetId}`,
+  //     {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         name: name,
+  //         description: description,
+  //       }),
+  //     }
+  //   );
+  // }
+
+  // async function deleteQuestionSet(questionSetId) {
+  //   const response = await fetch(
+  //     `/api/question/questionSets/${questionSetId}`,
+  //     {
+  //       method: "DELETE",
+  //     }
+  //   );
+  //   if (!response.ok) {
+  //     throw new Error("Error deleting question set");
+  //   }
+  // }
 
   //#endregion
 

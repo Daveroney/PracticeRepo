@@ -288,38 +288,6 @@
     ]
   },
   {
-    "Id": 2,
-    "Name": "Erotik Quiz",
-    "Description": "Hei\u00DFe Fragen f\u00FCr geile Feger",
-    "Questions": [
-      {
-        "Id": 23,
-        "QuestionText": "Wer wurde durch seinen Bericht \u00FCber das menschliche Sexualverhalten bekannt?",
-        "PossibleAnswers": [
-          "Casanova",
-          "Konrad Lorenz",
-          "Alfred Adler",
-          "Alfred Charles Kinsey"
-        ],
-        "CorrectAnswersIndex": [3],
-        "Explanation": "Frag Google",
-        "Tip": "Klingt ein bisschen nach roten Bohnen",
-        "Tags": [],
-        "Difficulty": "Easy"
-      },
-      {
-        "Id": 24,
-        "QuestionText": "Wer mag kurze, kurze Hosen?",
-        "PossibleAnswers": ["Michael M\u00FCller", "Lenny", "Carl"],
-        "CorrectAnswersIndex": [1, 2],
-        "Explanation": "ho",
-        "Tip": "he",
-        "Tags": [],
-        "Difficulty": "Easy"
-      }
-    ]
-  },
-  {
     "Id": 5,
     "Name": "Datenbanken",
     "Description": "Fragen zu relationalen Datenbanken",
