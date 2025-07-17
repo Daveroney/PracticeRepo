@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\IndexCardApp\\QuizApi\\QuizApi.csproj": {}
+    "C:\\Programming\\QuizApi\\QuizApi\\QuizApi.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\IndexCardApp\\QuizApi\\QuizApi.csproj": {
+    "C:\\Programming\\QuizApi\\QuizApi\\QuizApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\IndexCardApp\\QuizApi\\QuizApi.csproj",
+        "projectUniqueName": "C:\\Programming\\QuizApi\\QuizApi\\QuizApi.csproj",
         "projectName": "QuizApi",
-        "projectPath": "D:\\Programming\\IndexCardApp\\QuizApi\\QuizApi.csproj",
-        "packagesPath": "C:\\Users\\lekor\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\IndexCardApp\\QuizApi\\obj\\",
+        "projectPath": "C:\\Programming\\QuizApi\\QuizApi\\QuizApi.csproj",
+        "packagesPath": "C:\\Users\\DavidHock\\.nuget\\packages\\",
+        "outputPath": "C:\\Programming\\QuizApi\\QuizApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\lekor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DavidHock\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +27,6 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -79,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

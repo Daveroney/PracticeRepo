@@ -310,7 +310,7 @@
       {
         "Id": 24,
         "QuestionText": "Wer mag kurze, kurze Hosen?",
-        "PossibleAnswers": ["Michael Müller", "Lenny", "Carl"],
+        "PossibleAnswers": ["Michael M\u00FCller", "Lenny", "Carl"],
         "CorrectAnswersIndex": [1, 2],
         "Explanation": "ho",
         "Tip": "he",

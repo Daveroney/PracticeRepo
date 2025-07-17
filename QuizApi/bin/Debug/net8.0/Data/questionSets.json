@@ -301,17 +301,17 @@
           "Alfred Adler",
           "Alfred Charles Kinsey"
         ],
-        "CorrectAnswersIndex": [2],
+        "CorrectAnswersIndex": [3],
         "Explanation": "Frag Google",
-        "Tip": "Klingt wie eine Pokemon K\u00E4sesturm-Attacke",
+        "Tip": "Klingt ein bisschen nach roten Bohnen",
         "Tags": [],
         "Difficulty": "Easy"
       },
       {
         "Id": 24,
-        "QuestionText": null,
-        "PossibleAnswers": ["asd", "tata", "xD"],
-        "CorrectAnswersIndex": [1],
+        "QuestionText": "Wer mag kurze, kurze Hosen?",
+        "PossibleAnswers": ["Michael Müller", "Lenny", "Carl"],
+        "CorrectAnswersIndex": [1, 2],
         "Explanation": "ho",
         "Tip": "he",
         "Tags": [],
@@ -320,21 +320,23 @@
     ]
   },
   {
-    "Id": 3,
-    "Name": "Fleischk\u00E4se Quiz",
-    "Description": "Prei\u00DFn Beschreibung",
-    "Questions": []
-  },
-  {
-    "Id": 4,
-    "Name": "test set",
-    "Description": "test description",
-    "Questions": []
-  },
-  {
     "Id": 5,
     "Name": "Datenbanken",
     "Description": "Fragen zu relationalen Datenbanken",
-    "Questions": []
+    "Questions": [
+      {
+        "Id": 25,
+        "QuestionText": "Wann ist eine Datenbank widerspruchsfrei?",
+        "PossibleAnswers": [
+          "Wenn sie keine redundanten Daten enth\u00E4lt.",
+          "Wenn sie keine gleichen Werte in mehreren Spalten besitzt."
+        ],
+        "CorrectAnswersIndex": [0],
+        "Explanation": "string",
+        "Tip": "Im Unterricht aufpassen",
+        "Tags": ["string"],
+        "Difficulty": "Easy"
+      }
+    ]
   }
 ]

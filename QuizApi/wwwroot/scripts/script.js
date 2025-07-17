@@ -203,7 +203,7 @@
    * Mocks a HTML page for a question set and sets up the necessary elements.
    * @param {object} questionSet - The question set object containing id and name.
    */
-  function createNewPage(questionSet) {
+  async function createNewPage(questionSet) {
     const currentPageContent = document.getElementById("sheet-root");
     const header = document.createElement("h1");
     header.textContent = questionSet.name;
@@ -222,8 +222,8 @@
     const indexCardAnswers = document.createElement("div");
     indexCardAnswers.setAttribute("class", "index-card-answers");
     const answerList = document.createElement("ul");
-    const showCorrectAnswerButton = document.createElement("button");
-    showCorrectAnswerButton.textContent = "Antwort anzeigen";
+    const showCorrectAnswersButton = document.createElement("button");
+    showCorrectAnswersButton.textContent = "Antwort anzeigen";
     const buttonContainer = document.createElement("div");
     const nextButton = document.createElement("button");
     nextButton.setAttribute("id", "next-question-button");
@@ -236,11 +236,28 @@
     indexCard.appendChild(indexCardHeader);
     indexCardHeader.appendChild(indexCardTitle);
     indexCard.appendChild(indexCardAnswers);
-    indexCard.appendChild(showCorrectAnswerButton);
+    indexCard.appendChild(showCorrectAnswersButton);
     indexCardAnswers.appendChild(answerList);
     currentPageContent.appendChild(buttonContainer);
     buttonContainer.appendChild(nextButton);
-    renderRandomQuestion(questionSet.id, indexCardTitle, answerList);
+
+    const questionCardData = await renderRandomQuestion(
+      questionSet.id,
+      indexCardTitle,
+      answerList
+    );
+
+    showCorrectAnswersButton.addEventListener("click", async () => {
+      const questionId = questionCardData.id;
+      if (questionId) {
+        await displayCorrectAnswer(questionCardData.correctAnswersIndex);
+      } else {
+        console.error(
+          "No question ID found for displaying the correct answer."
+        );
+      }
+    });
+
     nextButton.addEventListener("click", () => {
       renderRandomQuestion(questionSet.id, indexCardTitle, answerList);
     });
@@ -274,11 +291,23 @@
     }
   }
 
-  async function displayCorrectAnswer(questionId, fetchQuestionFn) {
-    const question = await fetchQuestionFn(questionId);
-    const correctAnswerIndex = question.correctAnswersIndex;
-    const correctAnswer = question.possibleAnswers[correctAnswerIndex];
-    console.log("Correct answer:", correctAnswer);
+  /**
+   * Changes the color of index card answers based on whether they are correct or not.
+   * @param {Array} correctAnswersIndex - A number array containing the indexes of the correct answers.
+   */
+  async function displayCorrectAnswer(correctAnswersIndex) {
+    const answerItems = document.querySelectorAll(".index-card-answers li");
+    if (answerItems.length === 0) {
+      console.log("No answers available to display.");
+      return;
+    }
+    answerItems.forEach((item, index) => {
+      if (correctAnswersIndex.includes(index)) {
+        item.style.backgroundColor = "lightgreen";
+      } else {
+        item.style.backgroundColor = "lightcoral";
+      }
+    });
   }
 
   //#endregion
@@ -303,8 +332,6 @@
       toggleItemCreationVisibility(creationDropdown.value)
     );
 
-    populateQuestionSets();
-
     questionSetCreateButton.addEventListener("click", function () {
       const questionSetTitleInput = document.getElementById(
         "question-set-user-input"
@@ -319,6 +346,8 @@
       const questionSetId = document.getElementById(
         "question-set-dropdown"
       ).value;
+      const difficulty = document.getElementById("question-difficulty").value;
+      const mappedDifficulty = mapDifficulty(difficulty);
       const questionText = document.getElementById(
         "index-card-question-text"
       ).value;
@@ -327,9 +356,13 @@
       ).map((input) => input.value);
       createIndexCard(
         questionSetId,
+        mappedDifficulty,
         questionText,
         possibleAnswers,
-        [1],
+        getCorrectAnswersIndexFromCheckboxes(),
+        // TODO
+        // Tips, tags and explanation inputs have low priority and are currently not implemented in the UI
+        // Thus, they are set to empty strings or arrays.
         "",
         [""],
         ""
@@ -360,6 +393,37 @@
 
       answersWrapper.insertBefore(answerContainer, addButton);
     });
+
+    populateQuestionSets();
+  }
+
+  function getCorrectAnswersIndexFromCheckboxes() {
+    const checkboxes = document.querySelectorAll(".answer-correct-checkbox");
+    const correctAnswersIndex = [];
+    checkboxes.forEach((checkbox, index) => {
+      if (checkbox.checked) {
+        correctAnswersIndex.push(index);
+      }
+    });
+    return correctAnswersIndex;
+  }
+
+  /**
+   * Maps a difficulty string to the corresponding backend expected value.
+   * @param {string} difficulty - The string to be mapped to the corresponding difficulty.
+   * @returns {string} - The mapped difficulty string the backend expects.
+   */
+  function mapDifficulty(difficulty) {
+    switch (difficulty) {
+      case "Einfach":
+        return "Easy";
+      case "Mittel":
+        return "Medium";
+      case "Schwer":
+        return "Hard";
+      default:
+        return "Easy";
+    }
   }
 
   function toggleItemCreationVisibility(dropdownValue) {
@@ -409,22 +473,6 @@
     return response.json();
   }
 
-  async function getQuestionSetById(questionSetId) {
-    const response = await fetch(`/api/question/questionSets/${questionSetId}`);
-    if (!response.ok) {
-      throw new Error("Error fetching question set");
-    }
-    return response.json();
-  }
-
-  async function getQuestionById(questionId) {
-    const response = await fetch(`/api/question/questions/${questionId}`);
-    if (!response.ok) {
-      throw new Error("Error fetching question");
-    }
-    return response.json();
-  }
-
   async function getRandomQuestion(questionSetId) {
     const response = await fetch(
       `/api/question/questionSets/${questionSetId}/randomQuestions`
@@ -437,6 +485,7 @@
 
   async function createIndexCard(
     questionSetId,
+    difficulty,
     questionText,
     possibleAnswers,
     correctAnswersIndex,
@@ -453,13 +502,14 @@
         },
         body: JSON.stringify({
           questionText: questionText,
+          difficulty: difficulty,
           possibleAnswers: possibleAnswers,
           correctAnswersIndex: Array.isArray(correctAnswersIndex)
             ? correctAnswersIndex
             : [correctAnswersIndex],
-          tip: tip,
-          tags: Array.isArray(tags) ? tags : [],
-          explanation: explanation,
+          tip: tip || "",
+          tags: Array.isArray(tags) ? tags : [] || [""],
+          explanation: explanation || "",
         }),
       }
     );
@@ -482,6 +532,22 @@
     });
     if (!response.ok) {
       throw new Error("Error creating question set");
+    }
+    return response.json();
+  }
+
+  async function getQuestionSetById(questionSetId) {
+    const response = await fetch(`/api/question/questionSets/${questionSetId}`);
+    if (!response.ok) {
+      throw new Error("Error fetching question set");
+    }
+    return response.json();
+  }
+
+  async function getQuestionById(questionId) {
+    const response = await fetch(`/api/question/questions/${questionId}`);
+    if (!response.ok) {
+      throw new Error("Error fetching question");
     }
     return response.json();
   }
